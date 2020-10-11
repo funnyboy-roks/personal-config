@@ -1,10 +1,10 @@
 # Styles
 
-## Custom Styles
+Custom Styles
 	
 	None
 
-## Public Styles
+Public Styles
 
 	* GitHub-Dark
 		* [GitHub](https://github.com/StylishThemes/GitHub-Dark)
