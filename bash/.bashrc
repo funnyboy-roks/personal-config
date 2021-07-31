@@ -1,5 +1,10 @@
 HOST_NAME=funnyboy_roks
-GHDIR='~/Documents/GitHub'
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+
+# Set project dir
+export GHDIR="$HOME/Documents/GitHub"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -8,47 +13,49 @@ export NVM_DIR="$HOME/.nvm"
 shopt -s autocd
 shopt -s histappend
 
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/gems/bin
 
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
-# bind '"\e[A": history-search-backward'
-# bind '"\e[B": history-search-forward'
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtcyn='\e[0;36m' # Cyan
-txtblu='\e[0;34m' # Blue
+red='\e[0;31m' # Red
+green='\e[0;32m' # Green
+cyan='\e[0;36m' # Cyan
+blue='\e[0;34m' # Blue
 bldgrn='\e[1;32m' # Bold Green
 bldpur='\e[1;35m' # Bold Purple
-txtrst='\e[0m'  # Text Reset
+reset='\e[0m'  # Text Reset
 
 # clocks=("🕛" "🕐" "🕑" "🕒" "🕓" "🕔" "🕕" "🕖" "🕗" "🕘" "🕙" "🕚" "🕛" "🕐" "🕑" "🕒" "🕓" "🕔" "🕕" "🕖" "🕗" "🕘" "🕙" "🕚")
 # CLOCK=${clocks[$(date +"%H")]} # Get the clock for the current hour
 
-cl_prefixes=("$txtbluπ" "$txtbluλ" "💻" "🌎" "$txtblu⚙ " "$txtblu</>" "✅" "$CLOCK")
+# Get an emoji prefix for the cl
+cl_prefixes=("$blueπ" "$blueλ" "💻" "🌎" "$blue⚙ " "$cyan</>" "✅" "$CLOCK")
+CL_PREFIX=${cl_prefixes[$RANDOM % ${#cl_prefixes[@]} ]}
 
 # Cowsay styles
 cowsay_styles=("apt" "fox" "sheep" "bud-frogs" "ghostbusters" "skeleton" "bunny" "gnu" "snowman" "calvin" "hellokitty" "stegosaurus" "cheese" "kangaroo" "stimpy" "cock" "kiss" "suse" "cower" "koala" "three-eyes" "daemon" "kosh" "turkey" "default" "luke-koala" "turtle" "dragon" "mech-and-cow" "tux" "dragon-and-cow" "milk" "unipony" "duck" "moofasa" "unipony-smaller" "elephant" "moose" "vader" "elephant-in-snake" "pony" "vader-koala" "eyes" "pony-smaller" "www" "flaming-sheep" "ren")
-
-CL_PREFIX=${cl_prefixes[$RANDOM % ${#cl_prefixes[@]} ]}
 COWSAY_STYLE=${cowsay_styles[$RANDOM % ${#cowsay_styles[@]} ]}
+
 
 print_before_the_prompt () {
     dir=$PWD
     home=$HOME
     dir=${dir/"$HOME"/"~"}
-    printf "\n $txtred%s: $bldpur%s $txtgrn%s\n$txtrst" "$HOST_NAME" "$dir" "$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')"
+    title=${dir/"~/"/""}
+    echo -en "\033]0;$title\a"
+    printf "\n $red%s: $bldpur%s $green%s\n$reset" "$HOST_NAME" "$dir" "$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')"
 }
 
 PROMPT_COMMAND=print_before_the_prompt
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-# PS1="$CL_PREFIX$txtrst> "
-PS1="$CL_PREFIX$txtgrn> "
+# PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+PS1="$CL_PREFIX$green> $reset"
 
 fortune | cowsay -f $COWSAY_STYLE
 
@@ -67,39 +74,39 @@ js () {
 }
 
 function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
-    return 1
- else
-    for n in $@
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) 
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - file does not exist"
-          return 1
-      fi
-    done
-fi
+    if [ -z "$1" ]; then
+        # display usage if no parameters given
+        echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+        echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+        return 1
+    else
+        for n in $@
+        do
+            if [ -f "$n" ] ; then
+                case "${n%,}" in
+                    *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                    tar xvf "$n"       ;;
+                    *.lzma)      unlzma ./"$n"      ;;
+                    *.bz2)       bunzip2 ./"$n"     ;;
+                    *.rar)       unrar x -ad ./"$n" ;;
+                    *.gz)        gunzip ./"$n"      ;;
+                    *.zip)       unzip ./"$n"       ;;
+                    *.z)         uncompress ./"$n"  ;;
+                    *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
+                    7z x ./"$n"        ;;
+                    *.xz)        unxz ./"$n"        ;;
+                    *.exe)       cabextract ./"$n"  ;;
+                    *)
+                        echo "extract: '$n' - unknown archive method"
+                        return 1
+                    ;;
+                esac
+            else
+                echo "'$n' - file does not exist"
+                return 1
+            fi
+        done
+    fi
 }
 
 home () {
@@ -108,7 +115,7 @@ home () {
     source ~/.bashrc
 }
 
-html-template () {
+new-js () {
     touch index.js
     echo '<!DOCTYPE html>
 <html lang="en">
@@ -119,14 +126,70 @@ html-template () {
     <title>Document</title>
 </head>
 <body>
-    
+
     <script src="index.js"></script>
 </body>
-</html>' > index.html
+    </html>' > index.html
 }
 
 mvncp () {
     cp "$GHDIR/$1/target/$2" "./plugins/"
+}
+
+pls () {
+    sudo !!
+}
+
+go-there () {
+    cd $(!!)
+}
+
+ghdir () {
+    cd $GHDIR
+    if ! [ -z $1 ] ; then
+        cd $1
+    fi
+}
+
+reload () {
+    source ~/.bashrc
+}
+
+my-ip () {
+    printf " --- IP Information --- \n"
+    printf "${blue}Internal: ${reset}%s\n" $(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -1)
+    printf "${blue}External: ${reset}%s\n" $(curl -s http://ifconfig.io)
+    printf " ---------------------- \n"
+}
+
+new-proj () {
+    if [ -z $1 ] ; then
+        echo "Usage: new-project <project_name>"
+        return 1
+    fi
+    if [ -d $1 ] ; then
+        echo "Directory '$1' already exists"
+        return 1
+    fi
+    mkdir $1
+    cd $1
+    license Apache-2.0
+    
+    if ! [ -z $2 ] ; then
+        if [ $2 = "js" ] ; then
+            lang="node"
+        else 
+            lang=$2
+        fi
+        gitignore $lang
+        if [ $lang = "node" ] ; then
+            mkdir src
+            touch src/index.js
+            echo $'{\n"name": "'"$1"$'",\n"version": "1.0.0",\n"description": "",\n"main": "src/index.js",\n"scripts": {\n"start":"node src/index.js",\n"test": "echo \\"Error: no test specified\\" && exit 1"\n},\n"keywords": [],\n"author": "",\n"license": "Apache-2.0"\n}' > package.json
+        fi
+    fi
+    
+    echo "# $(basename $PWD)" > README.md
 }
 
 # -------
@@ -137,9 +200,13 @@ alias ll="ls -Al"
 alias lsa="ls -A"
 alias lha="ls -lhA"
 alias open="nautilus"
-alias ghdir="cd ~/Documents/GitHub && cd ./"
+alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias please="sudo"
 alias python="python3"
+alias python="python3"
+alias bg="nohup"
+alias mkdir="mkdir -pv"
+
 
 # ----------------------
 # Git Aliases
