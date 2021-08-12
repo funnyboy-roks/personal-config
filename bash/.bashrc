@@ -4,7 +4,10 @@ HOST_NAME=funnyboy_roks
 export GEM_HOME="$HOME/gems"
 
 # Set project dir
-export GHDIR="$HOME/Documents/GitHub"
+export PROJDIR="$HOME/Projects"
+
+# Custom Program installs
+export PROGRAMS="$HOME/Programs"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -13,7 +16,7 @@ export NVM_DIR="$HOME/.nvm"
 shopt -s autocd
 shopt -s histappend
 
-export PATH=$PATH:$HOME/bin:$HOME/gems/bin
+export PATH=$PATH:$HOME/bin:$HOME/gems/bin:$PROGRAMS/idea/bin
 
 export HISTSIZE=5000
 export HISTFILESIZE=10000
@@ -73,7 +76,7 @@ js () {
     node "$HOME/.scripts/$1.js" $2
 }
 
-function extract {
+extract () {
     if [ -z "$1" ]; then
         # display usage if no parameters given
         echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -133,25 +136,18 @@ new-js () {
 }
 
 mvncp () {
-    cp "$GHDIR/$1/target/$2" "./plugins/"
+    cp "$PROJDIR/$1/target/$2" "./plugins/"
 }
 
-pls () {
-    sudo !!
-}
-
-go-there () {
-    cd $(!!)
-}
-
-ghdir () {
-    cd $GHDIR
+projdir () {
+    cd $PROJDIR
     if ! [ -z $1 ] ; then
         cd $1
     fi
 }
 
 reload () {
+    unalias -a
     source ~/.bashrc
 }
 
@@ -192,6 +188,14 @@ new-proj () {
     echo "# $(basename $PWD)" > README.md
 }
 
+bg () {
+	exec nohup $@ &> /dev/null &
+}
+
+gcme () {
+    git clone git@github.com:funnyboy-roks/$1.git
+}
+
 # -------
 # Aliases
 # -------
@@ -199,13 +203,13 @@ alias l="ls"
 alias ll="ls -Al"
 alias lsa="ls -A"
 alias lha="ls -lhA"
-alias open="nautilus"
+alias open="nemo"
 alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias please="sudo"
 alias python="python3"
 alias python="python3"
-alias bg="nohup"
 alias mkdir="mkdir -pv"
+alias ghdir="proj"
 
 
 # ----------------------
