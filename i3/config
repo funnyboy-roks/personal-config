@@ -235,7 +235,7 @@ bar {
 
 
 # Lock screen
-bindsym $mod+l exec i3lock -c 2C001E && xset dpms force off
+bindsym $mod+l exec i3lock -c 2C001E && xset dpms force off && sleep 10 && xset dpms force off
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -246,8 +246,8 @@ bindsym XF86AudioPrev exec playerctl previous
 # Set Wallpaper
 exec_always feh --bg-fill /home/funnyboy_roks/Pictures/wallpaper.jpg
 
-# Config Displays -- Desktop
-# exec_always xrandr --output DisplayPort-0 --off --output DisplayPort-1 --mode 1680x1050 --pos 0x300 --rotate normal --output DisplayPort-2 --mode 1680x1050 --pos 3600x0 --rotate left --output HDMI-A-0 --primary --mode 1920x1080 --pos 1680x300 --rotate normal --output DVI-D-0 --off
+# Config Displays
+exec_always ~/.screenlayout/output.sh
 
 # Open Apps
 exec guake
