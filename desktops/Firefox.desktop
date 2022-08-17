@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+NoDisplay=false
+Exec=env MOZ_USE_XINPUT2=1 /opt/firefox/firefox-bin %u
+Name=Firefox Developer Edition
+Comment=Firefox Developer Edition

@@ -1,0 +1,12 @@
+#!/bin/bash
+# Script to handle locking the screen
+
+xset +dpms dpms 5 5 5
+
+polychromatic-cli -o brightness -p 0
+
+i3lock -i /home/funnyboy_roks/.config/i3/wallpaper.png -fen
+
+xset dpms 0 0 0
+
+polychromatic-cli -o brightness -p 100

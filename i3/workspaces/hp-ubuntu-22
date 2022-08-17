@@ -1,0 +1,10 @@
+set $left   "DisplayPort-1"
+set $center "DisplayPort-0"
+set $right  "DisplayPort-2"
+
+workspace $ws1 output $center
+
+workspace $ws3 output $center
+workspace $ws4 output $left
+
+workspace $ws0 output $right
