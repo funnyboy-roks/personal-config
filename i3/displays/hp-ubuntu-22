@@ -3,8 +3,7 @@ set $center "DisplayPort-0"
 set $right  "DisplayPort-2"
 
 workspace $ws1 output $center
-
+workspace $ws2 output $left
 workspace $ws3 output $center
-workspace $ws4 output $left
 
 workspace $ws0 output $right

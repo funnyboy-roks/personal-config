@@ -103,7 +103,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws0 "0"
 
-include ~/.config/i3/workspaces/`hostname`
+include ~/.config/i3/displays/`hostname`
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -150,7 +150,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+l exec /home/funnyboy_roks/.config/i3/lock
 
 # Screenshot
-bindsym Ctrl+Shift+Print exec rm ~/Pictures/screenshot.png && flameshot gui -c -p ~/Pictures/screenshot.png
+bindsym Ctrl+Shift+Print exec "rm ~/Pictures/screenshot.png; flameshot gui -c -p ~/Pictures/screenshot.png"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -197,7 +197,6 @@ for_window [id=0x3800003] title_format "Spotify" # Because spotify window titles
 
 focus_on_window_activation none
 force_display_urgency_hint 500 ms
-workspace_auto_back_and_forth yes
 title_align center
 
 ## </General Config>
@@ -239,7 +238,6 @@ client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.urgent           $inactive-bg-color  $inactive-bg-color $urgent-text-color   #0000aa
 
 default_border none
-# https://funnyboyroks.com
 
 # Primary Monitor Bar
 bar {
@@ -284,7 +282,7 @@ bar {
 }
 
 # Set Wallpaper
-exec_always feh --bg-fill /home/funnyboy_roks/Pictures/wallpaper.jpg
+exec_always feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.png
 
 # Config Displays
 exec_always ~/.screenlayout/output.sh

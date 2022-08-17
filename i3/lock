@@ -5,7 +5,11 @@ xset +dpms dpms 5 5 5
 
 polychromatic-cli -o brightness -p 0
 
-i3lock -i /home/funnyboy_roks/.config/i3/wallpaper.png -fen
+IMAGE=$HOME/sync/wallpapers/lock-`hostname`.png
+if ! [ -e $IMAGE ]; then
+    IMAGE=$HOME/sync/wallpapers/desktop.png
+fi
+i3lock -i $IMAGE -fen
 
 xset dpms 0 0 0
 

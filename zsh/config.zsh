@@ -54,12 +54,12 @@ dev () {
 fs () {
     # Requires server and client to be setup with unison (https://github.com/bcpierce00/unison)
     # `server` hostname is from ssh config
-    unison ~/sync ssh://server/sync
+    unison -auto ~/sync ssh://server/sync
 }
 
 my-ip () {
     printf " --- IP Information --- \n"
-    printf "${blue}Internal: ${reset}%s\n" $(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep '^192' | head -1)
+    printf "${blue}Internal: ${reset}%s\n" $(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
     printf "${blue}External: ${reset}%s\n" $(curl -s http://ifconfig.io)
     printf " ---------------------- \n"
 }
