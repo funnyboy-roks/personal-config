@@ -1557,7 +1557,14 @@
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
   function prompt_home_icon() {
-    p10k segment -f 208 -i '🖥️ '
+    ICON='  ';
+    HOST="$(hostname)"
+    if [ $HOST = "hp-ubuntu-22" ]; then
+        ICON='🖥️ '
+    elif [ $HOST = "XPS-13-2204" ]; then
+        ICON='💻 '
+    fi
+    p10k segment -f 208 -i "$ICON"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
