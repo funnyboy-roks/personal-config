@@ -3,7 +3,7 @@
 
 HERE=$(pwd)
 
-ln -s "$HERE/i3" "~/.config/i3"
+ln -s "$HERE/i3" ~/.config/i3
 
 for f in "$HERE"/desktops/*.desktop; do
     if [ -e "$f" ]; then 
