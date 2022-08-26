@@ -2,7 +2,7 @@
 # Script to handle locking the screen
 
 xset +dpms dpms 5 5 5
-
+playerctl pause
 polychromatic-cli -o brightness -p 0
 
 IMAGE=$HOME/sync/wallpapers/lock-`hostname`.png

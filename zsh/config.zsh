@@ -66,7 +66,7 @@ my-ip () {
 
 # bg <command>
 bg () {
-    nohup $@ &> /dev/null &
+    setsid $@ &> /dev/null &
 }
 
 # gcme <repo>
@@ -95,7 +95,7 @@ alias ll="ls -Al"
 alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias python="python3"
 alias mkdir="mkdir -pv"
-alias idea="bg idea"
+#alias idea="bg idea"
 
 # Git Aliases
 alias ga='git add'
