@@ -141,6 +141,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Lock screen
 bindsym $mod+l exec /home/funnyboy_roks/.config/i3/lock
+bindsym XF86Sleep exec /home/funnyboy_roks/.config/i3/lock
 
 # Screenshot
 bindsym Ctrl+Shift+Print exec "rm ~/Pictures/screenshot.png; flameshot gui -c -p ~/Pictures/screenshot.png"
@@ -157,7 +158,6 @@ bindsym XF86HomePage exec "nemo ~"
 bindsym XF86Mail [class="discord"] focus
 bindsym XF86Calculator exec ulauncher-toggle
 bindsym XF86Tools nop
-exec_always "xmodmap -e 'keycode 107 = End'"
 
 # Mark Windows
 set $m1 "F1"
@@ -196,7 +196,7 @@ for_window [id=0x3800003] title_format "Spotify" # Because spotify window titles
 
 ## <General Config>
 
-force_display_urgency_hint 500 ms
+#force_display_urgency_hint 500 ms
 title_align center
 
 ## </General Config>
@@ -245,7 +245,7 @@ bar {
 
         font pango:Anonymous Pro 12
         tray_output primary
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        status_command i3blocks -c ~/.config/i3/i3blocks/`hostname`-primary.conf
         
         colors {
                 background $inactive-bg-color
@@ -267,6 +267,7 @@ bar {
         
         font pango:Anonymous Pro 12
         tray_output none
+        status_command i3blocks -c ~/.config/i3/i3blocks/`hostname`-nonprimary.conf
 
         colors {
                 background $inactive-bg-color
@@ -282,11 +283,8 @@ bar {
 }
 
 
-# Config Displays
-exec_always ~/.screenlayout/output.sh
-
-# Set Wallpaper
-exec_always feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.png
+# Config Displays && Set Wallpaper
+exec_always ~/.screenlayout/output.sh && feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.png
 
 exec_always /home/funnyboy_roks/Documents/Programs/deadd-notification-center
 
@@ -295,8 +293,8 @@ exec guake
 exec discord
 exec autokey-gtk
 exec spotify
+exec compton -f -D 2 -m .8 -eG
 exec ulauncher --hide-window
-exec compton -f -D 1
 exec flameshot
 exec clock
 exec thunderbird
