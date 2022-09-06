@@ -154,10 +154,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Various Controls On Keyboard
 bindsym XF86Explorer nop
-bindsym XF86HomePage exec "nemo ~"
-bindsym XF86Mail [class="discord"] focus
-bindsym XF86Calculator exec ulauncher-toggle
-bindsym XF86Tools nop
+bindsym XF86Search nop
+bindsym XF86Calculator [class="discord"] focus
 
 # Mark Windows
 set $m1 "F1"
