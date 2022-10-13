@@ -7,3 +7,5 @@ workspace $ws2 output $left
 workspace $ws3 output $center
 
 workspace $ws0 output $right
+
+exec_always bash -c 'xrandr --listmonitors | grep "HDMI-A-0" > /dev/null && xinput --map-to-output "QDtech MPI7003" HDMI-A-0'

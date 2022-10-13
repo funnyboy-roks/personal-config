@@ -79,6 +79,7 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+s sticky toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -125,8 +126,11 @@ bindsym $mod+Shift+0 move container to workspace number $ws0
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+
 bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Up move workspace to output up
+bindsym $mod+Ctrl+Down move workspace to output down
 
 # focus left/right monitor
 bindsym $mod+greater focus output right
@@ -282,7 +286,8 @@ bar {
 
 
 # Config Displays && Set Wallpaper
-exec_always ~/.screenlayout/output.sh && feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.png
+#exec_always ~/.screenlayout/output.sh
+exec_always feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.png
 
 exec_always /home/funnyboy_roks/Documents/Programs/deadd-notification-center
 
