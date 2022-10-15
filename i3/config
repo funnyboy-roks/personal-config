@@ -289,7 +289,7 @@ bar {
 #exec_always ~/.screenlayout/output.sh
 exec_always feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.png
 
-exec_always /home/funnyboy_roks/Documents/Programs/deadd-notification-center
+exec_always dunst -conf /home/funnyboy_roks/.config/i3/dunst/dunstrc
 
 # Open Apps
 exec guake

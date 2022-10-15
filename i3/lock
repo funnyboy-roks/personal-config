@@ -14,3 +14,5 @@ i3lock -i $IMAGE -fen
 xset dpms 0 0 0
 
 polychromatic-cli -o brightness -p 100
+
+xinput --list | grep "QDtech" > /dev/null && xinput --map-to-output "QDtech MPI7003" HDMI-A-0
