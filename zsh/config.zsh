@@ -51,9 +51,14 @@ dev () {
 }
 
 # Sync local files with server files
-fs () {
+fsa () {
     # Requires server and client to be setup with unison (https://github.com/bcpierce00/unison)
     # `server` hostname is from ssh config
+    unison -auto -batch ~/sync ssh://server/sync
+}
+
+# Sync local files with server files
+fs () {
     unison -auto ~/sync ssh://server/sync
 }
 
