@@ -42,14 +42,6 @@ extract () {
     fi
 }
 
-# dev [project-group]
-dev () {
-    cd $PROJDIR
-    if ! [ -z $1 ] ; then
-        cd $1
-    fi
-}
-
 # Sync local files with server files
 fsa () {
     # Requires server and client to be setup with unison (https://github.com/bcpierce00/unison)
@@ -96,11 +88,14 @@ gcd () {
 }
 
 # Aliases
-alias ll="ls -Al"
+alias l="exa"
+alias ll="exa -lhF --icons"
 alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias python="python3"
 alias mkdir="mkdir -pv"
-#alias idea="bg idea"
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias :q="exit"
 
 # Git Aliases
 alias ga='git add'

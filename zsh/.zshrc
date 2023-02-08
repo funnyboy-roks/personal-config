@@ -19,7 +19,7 @@ eval $(thefuck --alias)
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/.zshconfig/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+source /etc/zsh_command_not_found
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
