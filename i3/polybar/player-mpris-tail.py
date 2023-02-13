@@ -222,6 +222,12 @@ class Player:
     def raisePlayer(self):
         self._playerRaise()
 
+    def get_name(self, name) -> str:
+        MAX_LENGTH = 20
+        if len(name) <= MAX_LENGTH:
+            return name
+        return name[:MAX_LENGTH] + '...'
+
     def connect(self):
         if self._disconnecting is not True:
             introspect_xml = self._introspect(self.bus_name, '/')
@@ -275,7 +281,7 @@ class Player:
             # Obtain properties from _metadata
             _artist     = _getProperty(self._metadata, 'xesam:artist', [''])
             _album      = _getProperty(self._metadata, 'xesam:album', '')
-            _title      = _getProperty(self._metadata, 'xesam:title', '')
+            _title      = self.get_name(_getProperty(self._metadata, 'xesam:title', ''))
             _track      = _getProperty(self._metadata, 'xesam:trackNumber', '')
             _genre      = _getProperty(self._metadata, 'xesam:genre', [''])
             _disc       = _getProperty(self._metadata, 'xesam:discNumber', '')
@@ -505,8 +511,8 @@ parser.add_argument('-w', '--whitelist', help="permit a player by it's bus name 
                     default=[])
 parser.add_argument('-f', '--format', default='{icon} {:artist:{artist} - :}{:title:{title}:}{:-title:{filename}:}')
 parser.add_argument('--truncate-text', default='…')
-parser.add_argument('--icon-playing', default='⏵')
-parser.add_argument('--icon-paused', default='⏸')
+parser.add_argument('--icon-playing', default='⏸')
+parser.add_argument('--icon-paused', default='⏵')
 parser.add_argument('--icon-stopped', default='⏹')
 parser.add_argument('--icon-none', default='')
 args = parser.parse_args()

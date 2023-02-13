@@ -29,7 +29,7 @@ bindsym $mod+F10 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec /home/funnyboy_roks/.config/i3/alacritty-cwd.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -155,10 +155,6 @@ assign [class="spotify"] $ws0 # Hopefully this gets fixed at some point
 assign [class="discord"] $ws0
 assign [class="clock"] $ws0
 
-for_window [class="clock"] resize set width 30 ppt
-
-for_window [id=0x3800003] title_format "Spotify" # Because spotify window titles are bad
-
 ## </Window Config>
 
 ## <General Config>
@@ -212,58 +208,10 @@ default_border none
 gaps inner 15
 
 exec_always --no-startup-id $HOME/.config/i3/polybar/launch.sh
-#### Note: This is staying in the commit, such that I can roll it back, if I do not like polybar 
-# Primary Monitor Bar
-#bar {
-#        output primary
-#
-#        font pango:Anonymous Pro 12
-#        tray_output primary
-#        status_command i3blocks -c ~/.config/i3/i3blocks/`hostname`-primary.conf
-#        
-#        colors {
-#                background $dark-bg-color
-#		#background #0C0C0C
-#                separator #757575
-##		set $active-color #55ff77
-#                #                  border           background       text
-#                focused_workspace  $light-bg-color  $light-bg-color  $text-color
-#		active_workspace   $dark-bg-color   $dark-bg-color   $text-color
-#                inactive_workspace $dark-bg-color   $dark-bg-color   $inactive-text-color
-#                urgent_workspace   $dark-bg-color   $dark-bg-color   $urgent-text-color
-#        }
-#
-#        bindsym button4 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-#        bindsym button5 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-#        
-#}
-
-# Nonprimary Monitor Bar
-#bar {
-#        output nonprimary
-#        
-#        font pango:Anonymous Pro 12
-#        tray_output none
-#        status_command i3blocks -c ~/.config/i3/i3blocks/`hostname`-nonprimary.conf
-#
-#        colors {
-#                background $dark-bg-color
-#                separator #757575
-#                #                  border           background       text
-#                focused_workspace  $light-bg-color  $light-bg-color  $text-color
-#		active_workspace   $dark-bg-color   $dark-bg-color   $text-color
-#                inactive_workspace $dark-bg-color   $dark-bg-color   $inactive-text-color
-#                urgent_workspace   $dark-bg-color   $dark-bg-color   $urgent-text-color
-#        }
-#
-#        bindsym button4 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-#        bindsym button5 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-#}
-
 
 # Config Displays && Set Wallpaper
 exec_always autorandr -c
-exec_always feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.png
+exec_always feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.jpg
 exec_always dunst -conf /home/funnyboy_roks/.config/i3/dunst/dunstrc
 exec_always numlockx on
 

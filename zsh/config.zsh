@@ -87,9 +87,11 @@ gcd () {
     fi
 }
 
+bash ~/dev/etc/base16/templates/shell/scripts/base16-circus.sh
+
 # Aliases
 alias l="exa"
-alias ll="exa -lhF --icons"
+alias ll="exa -lhFa --icons"
 alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias python="python3"
 alias mkdir="mkdir -pv"

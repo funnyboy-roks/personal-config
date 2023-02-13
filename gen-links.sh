@@ -19,6 +19,7 @@ ln -s "$HERE/zsh/.zshrc" "$HOME/.zshrc"
 ln -s "$HERE/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 ln -s "$HERE/.vimrc" "$HOME/.vimrc"
 ln -s "$HERE/alacritty" "$HOME/.config/alacritty"
+ln -s "$HERE/nvim" "$HOME/.config/nvim"
 
 if ! [ -e "$HOME/.config/ulauncher" ]; then
     ln -s "$HERE/ulauncher" "$HOME/.config/ulauncher"
