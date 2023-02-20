@@ -1,5 +1,3 @@
-" Fish doesn't play all that well with others
-set shell=/bin/bash
 let mapleader = "\<Space>"
 
 " =============================================================================
@@ -8,7 +6,7 @@ let mapleader = "\<Space>"
 " Load vundle
 set nocompatible
 filetype off
-set rtp+=~/dev/etc/base16/templates/vim/
+set rtp+=~/.config/nvim/base16/vim/
 call plug#begin()
 
 " Load plugins
@@ -48,6 +46,7 @@ Plug 'rhysd/vim-clang-format'
 "Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'mfussenegger/nvim-jdtls'
 
 call plug#end()
 
@@ -67,7 +66,7 @@ if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
 endif
 set background=dark
 let base16colorspace=256
-let g:base16_shell_path="~/dev/etc/base16/templates/shell/scripts/"
+let g:base16_shell_path="~/.config/nvim/base16/shell/scripts/"
 colorscheme base16-circus
 syntax on
 hi Normal ctermbg=NONE
@@ -153,7 +152,6 @@ local on_attach = function(client, bufnr)
   --     border = "none"
   --   },
   -- })
-  require'lspconfig'.pyright.setup{}
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -176,6 +174,13 @@ lspconfig.rust_analyzer.setup {
   },
   capabilities = capabilities,
 }
+lspconfig.pyright.setup{}
+--lspconfig.java_language_server.setup{}
+-- local config = {
+--     cmd = {'/home/funnyboy_roks/Downloads/jdtls/bin/jdtls'},
+--     --root_dir = nvim.fs.dirname(nvim.fs.find({'.gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+-- }
+-- require('jdtls').start_or_attach(config)
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {

@@ -1,3 +1,3 @@
-# personal-config
+# Personal Config
 
-A repo for the configuration files that I use
+## NOTE: When cloning, be sure to use `--recurse-submodules`.
