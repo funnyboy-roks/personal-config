@@ -13,8 +13,7 @@ extract () {
         echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
         return 1
     else
-        for n in $@
-        do
+        for n in $@; do
             if [ -f "$n" ] ; then
                 case "${n%,}" in
                     *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
@@ -87,11 +86,12 @@ gcd () {
     fi
 }
 
-bash ~/dev/etc/base16/templates/shell/scripts/base16-circus.sh
+sh ~/.config/nvim/base16/shell/scripts/base16-circus.sh
 
 # Aliases
 alias l="exa"
-alias ll="exa -lhFa --icons"
+alias ll="exa -lhFa --icons --git"
+alias cd="cd -P"
 alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias python="python3"
 alias mkdir="mkdir -pv"

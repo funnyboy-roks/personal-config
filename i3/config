@@ -6,7 +6,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:Anonymous Pro 10
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -37,13 +37,16 @@ bindsym $mod+Shift+q kill
 # start ulauncher (program launcher)
 bindsym $mod+d exec ulauncher-toggle
 
-# alternatively, you can use the cursor keys:
+# toggle bars
+bindsym $mod+b exec /home/funnyboy_roks/.config/i3/polybar/launch.sh toggle
+
+# move active focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# alternatively, you can use the cursor keys:
+# move active container
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -131,7 +134,7 @@ bindsym $mod+l exec /home/funnyboy_roks/.config/i3/lock
 bindsym XF86Sleep exec /home/funnyboy_roks/.config/i3/lock
 
 # Screenshot
-bindsym Ctrl+Shift+Print exec "rm ~/Pictures/screenshot.png; flameshot gui -c -p ~/Pictures/screenshot.png"
+bindsym Ctrl+Shift+Print exec "rm ~/pictures/screenshot.png; flameshot gui -c -p ~/pictures/screenshot.png"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl --player playerctld play-pause
@@ -150,6 +153,7 @@ bindsym $mod+F7 exec playerctl --player playerctld previous
 assign [class="jetbrains"] $ws1
 assign [class="gdlauncher"] $ws5
 assign [class="Minecraft"] $ws5
+assign [class="Steam"] $ws6
 assign [class="Thunderbird"] $ws8
 assign [class="spotify"] $ws0 # Hopefully this gets fixed at some point
 assign [class="discord"] $ws0
@@ -211,7 +215,6 @@ exec_always --no-startup-id $HOME/.config/i3/polybar/launch.sh
 
 # Config Displays && Set Wallpaper
 exec_always autorandr -c
-exec_always feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.jpg
 exec_always dunst -conf /home/funnyboy_roks/.config/i3/dunst/dunstrc
 exec_always numlockx on
 
@@ -220,7 +223,7 @@ exec guake
 exec discord
 exec autokey-gtk
 exec spotify
-exec compton -f -D 2 -m .8 -eG
+exec picom
 exec ulauncher --hide-window
 exec flameshot
 exec thunderbird

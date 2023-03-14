@@ -1,16 +1,16 @@
 # Note: This file is not meant to be executed.
 # Each line is meant to be run manually by the user.
 
-sudo apt update
-sudo apt upgrade
+# Ignore the following line, it's just to keep people(me) from accidentally executing this script
+echo "Don't run this script directly!" && exit
 
-# ------------------------------------------------
-#  Now would be the time to setup GitHub SSH keys
-# ------------------------------------------------
+# ---------------------------------------------------------------
+#  Now would be the time to setup SSH keys (Ideally copied over)
+# ---------------------------------------------------------------
 
 cd ~ # Go home
-git clone git@github.com:funnyboy-roks/personal-config.git config --recurse-submodule -j8
-cd config
+git clone git@github.com:funnyboy-roks/personal-config.git personal-config --recurse-submodule -j8
+cd personal-config
 ./gen-links.sh
 cd ~
 
@@ -20,9 +20,6 @@ sudo apt install zsh && chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # Install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-# You're supposed to restart zsh now in order to activate pl10k, however for
-# the configuration, I'd recommend waiting until after settup links to the
-# personal-config repo.
 # Restart using `exec zsh` or just restart the terminal
 
 # Setup some filesystem stuff
@@ -34,60 +31,44 @@ mv ~/Downloads ~/downloads
 mv ~/Pictures  ~/pictures
 mv ~/Videos    ~/videos
 mv ~/Desktop   ~/desktop
-rm -r ~/Music
-sudo apt install unison
+rm -r ~/Templates ~/Music
+
+# Install yay
+
+# Install unison
+yay -S unison
 
 # Install Rust/Cargo and some tools
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install alacritty exa cargo-expand onefetch fd-find proximity-sort
 
 # Install NeoVim
-cd /usr/bin/
-sudo curl -Lo nvim https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-sudo chmod +x
-cd ~
+yay -S neovim
 
 # Install i3wm and corrosponding requirements
-sudo apt install i3 i3lock polybar autorandr arandr feh compton flameshot dunst numlockx
-sudo add-apt-repository ppa:agornostal/ulauncher && sudo apt update && sudo apt install ulauncher
+yay -S i3 i3lock polybar autorandr arandr feh compton flameshot dunst ulauncher
 
-# Remove default firefox (like in Ubuntu)
-# If firefox is not installed, this can be ignored
-sudo apt-get remove firefox
-sudo snap remove firefox
-
+# Remove firefox if pre-installed (Ubuntu)
 # Install firefox developer edition
-sudo mkdir -p /opt
-cd /opt
-curl --location "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US" | sudo tar --extract --verbose --preserve-permissions --bzip2
-sudo ln -s /opt/firefox/firefox /usr/bin/firefox
-cd ~
+yay -S firefox-developer-edition
 
-# Install some snaps
-# (Make sure snap is installed first...)
-sudo snap install discord
-sudo snap install spotify
+# Install snaps (Not sure if necessary with yay)
 
 # Install AutoKey
-sudo apt install autokey-gtk
+yay -S autokey-gtk autokey-common
 
 # Install some nodejs things
-sudo apt install nodejs nvim -y
+yay -s nodejs npm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # Install & Setup Nemo
-sudo apt install nemo -y
+yay -S nemo
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 gsettings set org.gnome.desktop.background show-desktop-icons false
 gsettings set org.nemo.desktop show-desktop-icons true
 
-# Install VSCode
-sudo snap install code --classic
-
-# Note: Install JetBrains toolbox from https://www.jetbrains.com/toolbox-app/
-
-# Install Guake
-sudo apt install guake
+# Install Apps
+yay -S guake spotify discord mupdf
 
 # Random other packages
-sudo apt install mupdf openjdk-18-jdk
+yay -S jre-openjdk

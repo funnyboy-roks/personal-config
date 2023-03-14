@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import json
 import dbus
 import os
 from operator import itemgetter
@@ -281,7 +282,7 @@ class Player:
             # Obtain properties from _metadata
             _artist     = _getProperty(self._metadata, 'xesam:artist', [''])
             _album      = _getProperty(self._metadata, 'xesam:album', '')
-            _title      = self.get_name(_getProperty(self._metadata, 'xesam:title', ''))
+            _title      = (_getProperty(self._metadata, 'xesam:title', ''))
             _track      = _getProperty(self._metadata, 'xesam:trackNumber', '')
             _genre      = _getProperty(self._metadata, 'xesam:genre', [''])
             _disc       = _getProperty(self._metadata, 'xesam:discNumber', '')
@@ -423,7 +424,13 @@ class Player:
                 text = re.sub(r'􏿿p􏿿(.*?)􏿿p􏿿(.*?)􏿿p􏿿(.*?)􏿿p􏿿', r'%{\1}\2%{\3}', text.format_map(CleanSafeDict(**metadata)))
             except:
                 print("Invalid format string")
-            self._print(text)
+            sys.stdout.write(json.dumps({
+                'prefix': f'{self.icon} {self.metadata["artist"]} - ',
+                'content': self.metadata['title'],
+                'rotate': self.status != 'paused'
+            }) + '\n')
+            sys.stdout.flush()
+            #self._print(text)
         else:
             self._print(ICON_STOPPED)
 
