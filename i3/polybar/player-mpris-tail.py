@@ -425,7 +425,7 @@ class Player:
             except:
                 print("Invalid format string")
             sys.stdout.write(json.dumps({
-                'prefix': f'{self.icon} {self.metadata["artist"]} - ',
+                'prefix': f'{self.icon} {self.metadata["artist"]} - ' if self.metadata["artist"] != '' else f'{self.icon} ',
                 'content': self.metadata['title'],
                 'rotate': self.status != 'paused'
             }) + '\n')
@@ -519,7 +519,7 @@ parser.add_argument('-w', '--whitelist', help="permit a player by it's bus name 
 parser.add_argument('-f', '--format', default='{icon} {:artist:{artist} - :}{:title:{title}:}{:-title:{filename}:}')
 parser.add_argument('--truncate-text', default='…')
 parser.add_argument('--icon-playing', default='⏸')
-parser.add_argument('--icon-paused', default='⏵')
+parser.add_argument('--icon-paused', default='▶️')#⏵
 parser.add_argument('--icon-stopped', default='⏹')
 parser.add_argument('--icon-none', default='')
 args = parser.parse_args()

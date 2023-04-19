@@ -41,19 +41,19 @@ bindsym $mod+d exec ulauncher-toggle
 bindsym $mod+b exec /home/funnyboy_roks/.config/i3/polybar/launch.sh toggle
 
 # move active focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move active container
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+o split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -113,10 +113,10 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws0
 
 # move focused workspace between monitors
-bindsym $mod+Ctrl+Right move workspace to output right
-bindsym $mod+Ctrl+Left move workspace to output left
-bindsym $mod+Ctrl+Up move workspace to output up
-bindsym $mod+Ctrl+Down move workspace to output down
+bindsym $mod+Ctrl+l move workspace to output right
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+k move workspace to output up
+bindsym $mod+Ctrl+j move workspace to output down
 
 # focus left/right monitor
 bindsym $mod+greater focus output right
@@ -130,7 +130,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Lock screen
-bindsym $mod+l exec /home/funnyboy_roks/.config/i3/lock
+bindsym $mod+Escape exec /home/funnyboy_roks/.config/i3/lock
 bindsym XF86Sleep exec /home/funnyboy_roks/.config/i3/lock
 
 # Screenshot
@@ -171,6 +171,11 @@ title_align center
 bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
+        bindsym h resize shrink width  10 px or 10 ppt
+        bindsym l resize grow   width  10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym j resize grow   height 10 px or 10 ppt
+
         bindsym Left  resize shrink width  10 px or 10 ppt
         bindsym Right resize grow   width  10 px or 10 ppt
         bindsym Up    resize shrink height 10 px or 10 ppt
@@ -183,7 +188,6 @@ mode "resize" {
         bindsym Shift+Down  resize grow   height 50 px or 50 ppt
 
         # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }

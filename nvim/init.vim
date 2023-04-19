@@ -1,3 +1,4 @@
+set shell=/bin/bash
 let mapleader = "\<Space>"
 
 " =============================================================================
@@ -7,9 +8,9 @@ let mapleader = "\<Space>"
 set nocompatible
 filetype off
 set rtp+=~/.config/nvim/base16/vim/
-call plug#begin()
 
 " Load plugins
+call plug#begin()
 " VIM enhancements
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
@@ -43,10 +44,14 @@ Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-clang-format'
 "Plug 'fatih/vim-go'
-"Plug 'dag/vim-fish'
+Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'mfussenegger/nvim-jdtls'
+
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 call plug#end()
 
@@ -73,13 +78,9 @@ hi Normal ctermbg=NONE
 
 " Customize the highlight a bit.
 " Make comments more prominent -- they are important.
-call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
+"call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
 " Make it clearly visible which argument we're at.
-call Base16hi("LspSignatureActiveParameter", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold", "")
-" Would be nice to customize the highlighting of warnings and the like to make
-" them less glaring. But alas
-" https://github.com/nvim-lua/lsp_extensions.nvim/issues/21
-" call Base16hi("CocHintSign", g:base16_gui03, "", g:base16_cterm03, "", "", "")
+"call Base16hi("LspSignatureActiveParameter", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold", "")
 
 " LSP configuration
 lua << END
@@ -146,41 +147,35 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
   -- Get signatures (and _only_ signatures) when in argument lists.
-  -- require "lsp_signature".on_attach({
-  --   doc_lines = 0,
-  --   handler_opts = {
-  --     border = "none"
-  --   },
-  -- })
+  require "lsp_signature".on_attach({
+    doc_lines = 0,
+    handler_opts = {
+      border = "none"
+    },
+  })
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig.rust_analyzer.setup {
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-      },
-      completion = {
-	postfix = {
-	  enable = false,
-	},
-      },
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150,
     },
-  },
-  capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                allFeatures = true,
+            },
+            completion = {
+                postfix = {
+                  enable = false,
+                },
+            },
+        },
+    },
+    capabilities = capabilities,
 }
-lspconfig.pyright.setup{}
---lspconfig.java_language_server.setup{}
--- local config = {
---     cmd = {'/home/funnyboy_roks/Downloads/jdtls/bin/jdtls'},
---     --root_dir = nvim.fs.dirname(nvim.fs.find({'.gradlew', '.git', 'mvnw'}, { upward = true })[1]),
--- }
--- require('jdtls').start_or_attach(config)
+--lspconfig.pyright.setup{}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -190,11 +185,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-local config = {
-    cmd = {'jdtls'},
-    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
-}
-require('jdtls').start_or_attach(config)
+--require('jdtls').start_or_attach({
+--    cmd = {'jdtls'},
+--    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+--})
+lspconfig.tsserver.setup{}
+lspconfig.svelte.setup{}
 
 END
 
@@ -246,6 +242,8 @@ let javaScript_fold=0
 
 " Java
 let java_ignore_javadoc=1
+"let java_highlight_functions = 1
+"let java_highlight_all = 1
 
 " Latex
 let g:latex_indent_enabled = 1
@@ -301,9 +299,9 @@ let g:sneak#s_next = 1
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
-set printfont=:h10
-set printencoding=utf-8
-set printoptions=paper:letter
+"set printfont=:h10
+"set printencoding=utf-8
+"set printoptions=paper:letter
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
 set signcolumn=yes
 
@@ -454,7 +452,7 @@ command! -bang -nargs=? -complete=dir Files
 " Open new file adjacent to current file
 nnoremap <leader>o :e <C-R>=expand("%:p:h") . "/" <CR>
 
-" No arrow keys --- force yourself to use the home row
+" No arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 inoremap <up> <nop>
@@ -482,9 +480,11 @@ nnoremap <leader>q g<c-g>
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
 
-" I can type :help on my own, thanks.
-map <F1> <Esc>
-imap <F1> <Esc>
+nm <silent> <F1> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
+    \ . '> trans<' . synIDattr(synID(line("."),col("."),0),"name")
+    \ . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name")
+    \ . ">"<CR>
+"imap <F1> <Esc>
 
 
 " =============================================================================
