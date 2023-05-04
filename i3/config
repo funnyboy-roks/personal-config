@@ -127,7 +127,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit?' -B 'Yes' 'i3-msg exit' -f 'pango:Anonymous Pro 36'"
 
 # Lock screen
 bindsym $mod+Escape exec /home/funnyboy_roks/.config/i3/lock
@@ -150,14 +150,13 @@ bindsym $mod+F7 exec playerctl --player playerctld previous
 
 ## <Window Config>
 
+assign [class="spotify"] $ws0
+assign [class="discord"] $ws0
 assign [class="jetbrains"] $ws1
 assign [class="gdlauncher"] $ws5
 assign [class="Minecraft"] $ws5
 assign [class="Steam"] $ws6
 assign [class="Thunderbird"] $ws8
-assign [class="spotify"] $ws0 # Hopefully this gets fixed at some point
-assign [class="discord"] $ws0
-assign [class="clock"] $ws0
 
 ## </Window Config>
 
@@ -167,10 +166,8 @@ title_align center
 
 ## </General Config>
 
-
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
         bindsym h resize shrink width  10 px or 10 ppt
         bindsym l resize grow   width  10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -194,14 +191,11 @@ mode "resize" {
 
 
 set $text-color             #55ff77
-#set $light-bg-color 	     #102030
-set $light-bg-color         #202023
-#set $dark-bg-color          #2f343f
-set $dark-bg-color          #0c0c0f
-#set $text-color             #f3f4f5
+set $light-bg-color         #191919
+set $dark-bg-color          #101013
 set $inactive-text-color    #a0a0b0
-set $urgent-light-bg-color  #E53935
-set $urgent-text-color      #ff784b
+#set $urgent-text-color      #ff784b
+set $urgent-text-color      #dc657d
 
 # window colors
 #                       border              background    text                 indicator
