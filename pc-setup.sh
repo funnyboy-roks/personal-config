@@ -2,7 +2,7 @@
 # Each line is meant to be run manually by the user.
 
 # Ignore the following line, it's just to keep people(me) from accidentally executing this script
-echo "Don't run this script directly!" && exit
+                                                  echo "Don't run this script directly!" && exit
 
 # ---------------------------------------------------------------
 #  Now would be the time to setup SSH keys (Ideally copied over)
@@ -14,13 +14,31 @@ cd personal-config
 ./gen-links.sh
 cd ~
 
-# Zsh install & setup
-sudo apt install zsh && chsh -s $(which zsh)
-# Install ohmyzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# Install powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-# Restart using `exec zsh` or just restart the terminal
+# Install yay so we can use other repos
+pacman -S yay
+
+# Install Rust/Cargo and some tools
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install alacritty exa cargo-expand onefetch fd-find proximity-sort
+
+# Install NeoVim for editing
+yay -S neovim
+
+# Install i3wm and corrosponding requirements
+yay -S i3 i3lock polybar autorandr arandr feh compton flameshot dunst ulauncher
+cargo install marquee
+
+# Remove firefox if pre-installed (Ubuntu)
+# Install firefox developer edition
+yay -S firefox-developer-edition
+
+# Let's get fish setup
+yay -S fish
+chsh -s $(which fish)
+# Probably restart i3 to fully change shell for like alacritty
+# In fish:
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install pure-fish/pure
 
 # Setup some filesystem stuff
 mkdir -p ~/dev # This is for dev stuff
@@ -32,30 +50,16 @@ mv ~/Pictures  ~/pictures
 mv ~/Videos    ~/videos
 mv ~/Desktop   ~/desktop
 rm -r ~/Templates ~/Music
-
-# Install yay
+# Edit `~/.config/user-dirs.dirs` to officially change with xorg
 
 # Install unison
 yay -S unison
-
-# Install Rust/Cargo and some tools
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cargo install alacritty exa cargo-expand onefetch fd-find proximity-sort
-
-# Install NeoVim
-yay -S neovim
-
-# Install i3wm and corrosponding requirements
-yay -S i3 i3lock polybar autorandr arandr feh compton flameshot dunst ulauncher
-
-# Remove firefox if pre-installed (Ubuntu)
-# Install firefox developer edition
-yay -S firefox-developer-edition
 
 # Install snaps (Not sure if necessary with yay)
 
 # Install AutoKey
 yay -S autokey-gtk autokey-common
+# Setup autokey config: | \
 
 # Install some nodejs things
 yay -s nodejs npm
