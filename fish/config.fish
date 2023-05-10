@@ -1,5 +1,4 @@
 if status is-interactive
-    atuin init fish --disable-up-arrow | source
     sh ~/.config/nvim/base16/shell/scripts/base16-circus.sh
 
     set JAVA_HOME "/usr/lib/jvm/default"
@@ -9,6 +8,7 @@ if status is-interactive
 
     # Init fzf (^T)
     #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    atuin init fish --disable-up-arrow | source
 end
  
 set PROJDIR ~/dev

@@ -2,6 +2,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+no_focus [class="*"]
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -31,62 +33,68 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec /home/funnyboy_roks/.config/i3/alacritty-cwd.sh
 
-# kill focused window
+# Kill focused window
 bindsym $mod+Shift+q kill
 
-# start ulauncher (program launcher)
+# Start ulauncher (program launcher)
 bindsym $mod+d exec ulauncher-toggle
 
-# toggle bars
-bindsym $mod+b exec /home/funnyboy_roks/.config/i3/polybar/launch.sh toggle
+# Toggle polybar
+bindsym $mod+b exec ~/.config/i3/polybar/launch.sh toggle
 
-# move active focus
+# Move active focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# move active container
+# Move active container
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split in horizontal orientation
+# Split in h_o_rizontal orientation (not $mod+h for vim movement keybinds)
 bindsym $mod+o split h
 
-# split in vertical orientation
+# Split in _v_ertical orientation
 bindsym $mod+v split v
 
-# enter fullscreen mode for the focused container
+# Toggle fullscreen for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# Change container layout
+#   Disabled bc never used: bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+# Toggle sticky (Independent of workspaces)
 bindsym $mod+Shift+s sticky toggle
 
-# change focus between tiling / floating windows
+# Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+#   Terminal
 set $ws1 "1"
 set $ws2 "2"
+#   Web browser
 set $ws3 "3"
 set $ws4 "4"
+#   Minecraft
 set $ws5 "5"
+#   Other games
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
+#   Small screen -- Stats and stuff
 set $ws9 "9"
+#   Discord and Spotify
 set $ws0 "0"
 
-include ~/.config/i3/displays/`hostname`
+include ~/.config/autorandr/`autorandr --current`/i3
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -127,7 +135,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit?' -B 'Yes' 'i3-msg exit' -f 'pango:Anonymous Pro 36'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit?' -B ' Yes ' 'i3-msg exit' -f 'pango:Anonymous Pro 36'"
 
 # Lock screen
 bindsym $mod+Escape exec /home/funnyboy_roks/.config/i3/lock
@@ -142,17 +150,14 @@ bindsym XF86AudioPause exec playerctl --player playerctld play-pause
 bindsym XF86AudioNext exec playerctl --player playerctld next
 bindsym XF86AudioPrev exec playerctl --player playerctld previous
 
-bindsym $mod+F8 exec playerctl --player playerctld play-pause
-bindsym $mod+F9 exec playerctl --player playerctld next
-bindsym $mod+F7 exec playerctl --player playerctld previous
-
 ## </Keybinds>
 
 ## <Window Config>
 
-assign [class="spotify"] $ws0
+assign [class="(?i)spotify"] $ws0
 assign [class="discord"] $ws0
 assign [class="jetbrains"] $ws1
+assign [class="firefox"] $ws3
 assign [class="gdlauncher"] $ws5
 assign [class="Minecraft"] $ws5
 assign [class="Steam"] $ws6
@@ -168,24 +173,21 @@ title_align center
 
 bindsym $mod+r mode "resize"
 mode "resize" {
+        # Small jumps
         bindsym h resize shrink width  10 px or 10 ppt
         bindsym l resize grow   width  10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym j resize grow   height 10 px or 10 ppt
 
-        bindsym Left  resize shrink width  10 px or 10 ppt
-        bindsym Right resize grow   width  10 px or 10 ppt
-        bindsym Up    resize shrink height 10 px or 10 ppt
-        bindsym Down  resize grow   height 10 px or 10 ppt
-
         # Bigger Jumps
-        bindsym Shift+Left  resize shrink width  50 px or 50 ppt
-        bindsym Shift+Right resize grow   width  50 px or 50 ppt
-        bindsym Shift+Up    resize shrink height 50 px or 50 ppt
-        bindsym Shift+Down  resize grow   height 50 px or 50 ppt
+        bindsym Shift+h resize shrink width  50 px or 50 ppt
+        bindsym Shift+l resize grow   width  50 px or 50 ppt
+        bindsym Shift+k resize shrink height 50 px or 50 ppt
+        bindsym Shift+j resize grow   height 50 px or 50 ppt
 
-        # back to normal: Enter or Escape or $mod+r
+        # Back to default: <Esc>, <C-j>, or <M-r>
         bindsym Escape mode "default"
+        bindsym Ctrl+j mode "default"
         bindsym $mod+r mode "default"
 }
 
@@ -194,7 +196,6 @@ set $text-color             #55ff77
 set $light-bg-color         #191919
 set $dark-bg-color          #101013
 set $inactive-text-color    #a0a0b0
-#set $urgent-text-color      #ff784b
 set $urgent-text-color      #dc657d
 
 # window colors
@@ -211,7 +212,7 @@ gaps inner 15
 
 exec_always --no-startup-id $HOME/.config/i3/polybar/launch.sh
 
-# Config Displays && Set Wallpaper
+# Config displays and set wallpaper (via autorandr)
 exec_always autorandr -c
 exec_always dunst -conf /home/funnyboy_roks/.config/i3/dunst/dunstrc
 exec_always numlockx on
@@ -225,3 +226,5 @@ exec picom
 exec ulauncher --hide-window
 exec flameshot
 exec thunderbird
+
+no_focus [class="*"]

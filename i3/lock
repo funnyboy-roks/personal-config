@@ -4,6 +4,7 @@
 xset +dpms dpms 5 5 5
 playerctl pause
 polychromatic-cli -o brightness -p 0
+dunstctl set-paused true
 
 IMAGE="$HOME/.config/autorandr/$(autorandr --current)/lock.png"
 if ! [ -e $IMAGE ]; then
@@ -12,6 +13,7 @@ fi
 i3lock -i $IMAGE -fen
 
 xset dpms 0 0 0
+dunstctl set-paused false
 
 polychromatic-cli -o brightness -p 100
 
