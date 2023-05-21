@@ -23,5 +23,7 @@ mkln "nvim"                "$HOME/.config/nvim"
 mkln "ulauncher"           "$HOME/.config/ulauncher"
 mkln "autorandr"           "$HOME/.config/autorandr"
 mkln "picom"               "$HOME/.config/picom"
+mkln ".xinitrc"            "$HOME/.xinitrc"
 
 mkln "lemurs/config.toml"  "/etc/lemurs/config.toml" # This may need sudo to run
+mkln "lemurs/wms"          "/etc/lemurs/wms" # This may need sudo to run
