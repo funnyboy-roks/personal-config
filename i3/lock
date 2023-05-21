@@ -10,7 +10,8 @@ IMAGE="$HOME/.config/autorandr/$(autorandr --current)/lock.png"
 if ! [ -e $IMAGE ]; then
     IMAGE=$HOME/sync/wallpapers/desktop.png
 fi
-i3lock -i $IMAGE -fen
+#i3lock -i $IMAGE -fen
+betterlockscreen -l
 
 xset dpms 0 0 0
 dunstctl set-paused false

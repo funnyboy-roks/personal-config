@@ -47,7 +47,6 @@ Plug 'rhysd/vim-clang-format'
 Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'mfussenegger/nvim-jdtls'
 
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -178,7 +177,7 @@ lspconfig.rust_analyzer.setup {
     },
     capabilities = capabilities,
 }
---lspconfig.pyright.setup{}
+lspconfig.pyright.setup{}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -190,6 +189,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 lspconfig.tsserver.setup{}
 lspconfig.svelte.setup{}
+lspconfig.cssls.setup{}
 
 END
 
@@ -238,11 +238,6 @@ endif
 
 " Javascript "
 let javaScript_fold=0
-
-" Java "
-let java_ignore_javadoc=1
-let java_highlight_functions = 1
-let java_highlight_all = 1
 
 " Latex "
 let g:latex_indent_enabled = 1
@@ -295,7 +290,7 @@ let g:vim_markdown_frontmatter = 1
 " set printfont=:h10 "
 " set printencoding=utf-8 "
 " set printoptions=paper:letter "
-"
+
 " Always draw sign column. Prevent buffer moving when adding/deleting sign. "
 set signcolumn=yes
 
@@ -408,11 +403,6 @@ tnoremap <C-k> <Esc>
 vnoremap <C-h> :nohlsearch<cr>
 nnoremap <C-h> :nohlsearch<cr>
 
-" Suspend with Ctrl+f "
-inoremap <C-f> :sus<cr>
-vnoremap <C-f> :sus<cr>
-nnoremap <C-f> :sus<cr>
-
 " Jump to start and end of line using the home row keys "
 map H ^
 map L $
@@ -471,7 +461,7 @@ nnoremap <leader>, :set invlist<cr>
 " <leader>q shows stats "
 nnoremap <leader>q g<c-g>
 
-" Keymap for replacing up to next _ or - "
+" Keymap for replacing up to next _"
 noremap <leader>m ct_
 
 " F1 shows the syntax token under the cursor "

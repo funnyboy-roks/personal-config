@@ -10,9 +10,9 @@ if status is-interactive
     #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     atuin init fish --disable-up-arrow | source
 end
- 
-set PROJDIR ~/dev
 
+nvm use latest -s
+ 
 # mkcd <directory>
 function mkcd
     mkdir $argv[1] && cd $argv[1]

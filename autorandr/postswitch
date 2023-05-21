@@ -1,3 +1,4 @@
 #!/bin/sh
 
 feh --bg-fill /home/funnyboy_roks/sync/wallpapers/desktop.jpg
+betterlockscreen -u ~/sync/wallpapers/lock.png

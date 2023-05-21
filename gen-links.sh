@@ -15,11 +15,13 @@ function mkln () {
     ln -s "$(pwd)/$from" "$to"
 }
 
-mkln "i3"                "$HOME/.config/i3"
-mkln "fish/config.fish"  "$HOME/.config/fish/config.fish"
-mkln ".vimrc"            "$HOME/.vimrc"
-mkln "alacritty"         "$HOME/.config/alacritty"
-mkln "nvim"              "$HOME/.config/nvim"
-mkln "ulauncher"         "$HOME/.config/ulauncher"
-mkln "autorandr"         "$HOME/.config/autorandr"
-mkln "picom"             "$HOME/.config/picom"
+mkln "i3"                  "$HOME/.config/i3"
+mkln "fish/config.fish"    "$HOME/.config/fish/config.fish"
+mkln ".vimrc"              "$HOME/.vimrc"
+mkln "alacritty"           "$HOME/.config/alacritty"
+mkln "nvim"                "$HOME/.config/nvim"
+mkln "ulauncher"           "$HOME/.config/ulauncher"
+mkln "autorandr"           "$HOME/.config/autorandr"
+mkln "picom"               "$HOME/.config/picom"
+
+mkln "lemurs/config.toml"  "/etc/lemurs/config.toml" # This may need sudo to run
