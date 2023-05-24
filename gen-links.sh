@@ -7,16 +7,18 @@ function mkln () {
     to="$2"
 
     if ! [ -L "$to" ]; then # Move if it is not a link
-        mv "$to" "$to_OLD" > /dev/null && echo "Moved $to to $to_OLD"
+        mv "$to" "$to_OLD" > /dev/null 2> /dev/null && echo "Moved $to to $to_OLD"
     else # Otherwise, yeet it
         target="$(readlink -f "$to")"
-        rm "$to" && echo "Removed previous link ${to/$HOME/~} -> ${target/$HOME/~}"
+        rm "$to" > /dev/null 2> /dev/null && echo "Removed previous link ${to/$HOME/~} -> ${target/$HOME/~}"
     fi
     ln -s "$(pwd)/$from" "$to"
 }
 
 mkln "i3"                  "$HOME/.config/i3"
 mkln "fish/config.fish"    "$HOME/.config/fish/config.fish"
+mkln "zsh"                 "$HOME/.zsh"
+mkln "zsh/.zshrc"          "$HOME/.zshrc"
 mkln ".vimrc"              "$HOME/.vimrc"
 mkln "alacritty"           "$HOME/.config/alacritty"
 mkln "nvim"                "$HOME/.config/nvim"

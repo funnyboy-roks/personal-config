@@ -117,6 +117,7 @@ alias ll "exa -lhFa --icons --git"
 alias instdir "cd ~/.config/gdlauncher_next/instances"
 alias python "python3"
 alias mkdir "mkdir -pv"
+alias tree "tree -CA"
 alias :q "exit"
 
 # Git Aliases

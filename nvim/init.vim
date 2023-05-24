@@ -410,8 +410,13 @@ map L $
 " Neat X clipboard integration "
 " <space>p will paste clipboard into buffer "
 " <space>c will copy entire buffer into clipboard "
-noremap <leader>p :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr>
+"noremap <leader>p :read !xsel --clipboard --output<cr>
+"noremap <leader>c :w !xsel -ib<cr><cr>
+
+noremap <leader>p "+p
+"
+noremap <leader>c "+y
+"
 
 " <leader>s for Rg search "
 noremap <leader>s :Rg
@@ -452,6 +457,9 @@ nnoremap <right> :bn<CR>
 nnoremap j gj
 nnoremap k gk
 
+nnoremap <A-j> 10gj
+nnoremap <A-k> 10gk
+
 " <leader><leader> toggles between buffers "
 nnoremap <leader><leader> <c-^>
 
@@ -469,7 +477,7 @@ nm <silent> <F1> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
     \ . '> trans<' . synIDattr(synID(line("."),col("."),0),"name")
     \ . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name")
     \ . ">"<CR>
-"imap <F1> <Esc> "
+imap <F1> <Esc> "
 
 
 " ============================================================================= "

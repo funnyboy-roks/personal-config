@@ -374,7 +374,7 @@ class Player:
         if self.status in [ 'playing', 'paused' ]:
             metadata = { **self.metadata, 'icon': self.icon, 'icon-reversed': self.icon_reversed }
             sys.stdout.write(json.dumps({
-                'prefix': f'{self.icon} {self.metadata["artist"]} - ' if self.metadata["artist"] != '' else f'{self.icon} ',
+                'prefix': f'{self.icon} {self.metadata["artist"][:20]} - ' if self.metadata["artist"] != '' else f'{self.icon} ',
                 'content': self.metadata['title'],
                 'rotate': self.status != 'paused'
             }) + '\n')
