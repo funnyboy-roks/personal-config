@@ -199,7 +199,7 @@ set $inactive-text-color    #a0a0b0
 set $urgent-text-color      #dc657d
 
 # window colors
-#                       border              background    text                 indicator
+#                       border           background       text                 indicator
 client.focused          $dark-bg-color   $dark-bg-color   $text-color          #0000aa
 client.unfocused        $light-bg-color  $light-bg-color  $inactive-text-color #0000aa
 client.focused_inactive $light-bg-color  $light-bg-color  $inactive-text-color #0000aa
