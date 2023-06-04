@@ -191,6 +191,18 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+bindsym $mod+s mode "spotify"
+mode "spotify" {
+        bindsym f exec playerctl -p spotify shuffle toggle
+        bindsym l exec playerctl -p spotify loop toggle
+        bindsym space exec playerctl -p spotify play-pause
+
+        # Back to default: <Esc>, <C-j>, or <M-s>
+        bindsym Escape mode "default"
+        bindsym Ctrl+j mode "default"
+        bindsym $mod+s mode "default"
+}
+
 
 set $text-color             #55ff77
 set $light-bg-color         #191919

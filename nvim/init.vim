@@ -51,6 +51,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'GutenYe/json5.vim'
 
 call plug#end()
 
@@ -83,6 +84,7 @@ hi Normal ctermbg=NONE
 
 " Give typos a better look in alacritty
 hi SpellBad cterm=undercurl ctermbg=none gui=undercurl guisp=LightRed
+hi SpellCap cterm=undercurl ctermbg=none gui=undercurl guisp=LightBlue
 
 " LSP configuration
 lua << END
