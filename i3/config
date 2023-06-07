@@ -217,7 +217,6 @@ mode "$dtime" {
 
         # Back to default: <Esc>, <C-j>, or <M-s>
         bindsym Escape mode "default"
-        bindsym Return mode "default"
         bindsym Ctrl+j mode "default"
         bindsym $mod+t mode "default"
 }
