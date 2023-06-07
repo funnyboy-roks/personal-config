@@ -204,6 +204,24 @@ mode "spotify" {
         bindsym $mod+s mode "default"
 }
 
+set $dtime discord-time [d] [D] [t] [T] [f] [F] [R]
+bindsym $mod+t mode "$dtime"
+mode "$dtime" {
+        bindsym d       exec ~/.config/i3/discord-time-prompt.zsh -d; mode "default"
+        bindsym Shift+d exec ~/.config/i3/discord-time-prompt.zsh -D; mode "default"
+        bindsym t       exec ~/.config/i3/discord-time-prompt.zsh -t; mode "default"
+        bindsym Shift+t exec ~/.config/i3/discord-time-prompt.zsh -T; mode "default"
+        bindsym f       exec ~/.config/i3/discord-time-prompt.zsh -f; mode "default"
+        bindsym Shift+f exec ~/.config/i3/discord-time-prompt.zsh -F; mode "default"
+        bindsym Shift+r exec ~/.config/i3/discord-time-prompt.zsh -R; mode "default"
+
+        # Back to default: <Esc>, <C-j>, or <M-s>
+        bindsym Escape mode "default"
+        bindsym Return mode "default"
+        bindsym Ctrl+j mode "default"
+        bindsym $mod+t mode "default"
+}
+
 
 set $text-color             #55ff77
 set $light-bg-color         #191919

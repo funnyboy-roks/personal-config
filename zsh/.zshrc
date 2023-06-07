@@ -188,12 +188,23 @@ gcd () {
 # 
 # If time is not specified, then uses the current time
 dt () {
+    flag=""
+    case "$1" in;
+        '-d') flag=":d" ;;
+        '-D') flag=":D" ;;
+        '-t') flag=":t" ;;
+        '-T') flag=":T" ;;
+        '-f') flag=":f" ;;
+        '-R') flag=":R" ;;
+    esac
+    echo "$flag"
+
     args=$(echo "$@")
     out=""
     if ! [ -z $args ]; then
-        out=$(date +'<t:%s>' -d "$args")
+        out=$(date +"<t:%s$flag>" -d "$args")
     else
-        out=$(date +'<t:%s>')
+        out=$(date +"<t:%s$flag>")
     fi
     echo "$out"
     printf "$out" | xclip -i -selection clipboard

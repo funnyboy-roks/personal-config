@@ -5,4 +5,4 @@
 
 source ~/.zshrc
 
-dt "$(dmenu -fn 'Anonymous Pro-24'< /dev/null)"
+dt $1 "$(dmenu -fn 'Anonymous Pro-24'< /dev/null)"
