@@ -188,21 +188,14 @@ gcd () {
 # 
 # If time is not specified, then uses the current time
 dt () {
-    flag=""
-    case "$1" in;
-        '-d') flag=":d" ;;
-        '-D') flag=":D" ;;
-        '-t') flag=":t" ;;
-        '-T') flag=":T" ;;
-        '-f') flag=":f" ;;
-        '-R') flag=":R" ;;
-    esac
-    echo "$flag"
-
-    args=$(echo "$@")
     out=""
     if ! [ -z $args ]; then
-        out=$(date +"<t:%s$flag>" -d "$args")
+        flag=""
+        if [[ "$1" =~ ^(-[dDtTfFR])$ ]]; then
+            flag="${1/-/:}"
+        fi
+
+        out=$(date +"<t:%s$flag>" -d "$*")
     else
         out=$(date +"<t:%s$flag>")
     fi
