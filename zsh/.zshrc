@@ -183,26 +183,39 @@ gcd () {
     fi
 }
 
+# Takes an optional time and then copies the discord format
+# to the keyboard and prints to stdout
+# 
+# If time is not specified, then uses the current time
+dt () {
+    args=$(echo "$@")
+    out=""
+    if ! [ -z $args ]; then
+        out=$(date +'<t:%s>' -d "$args")
+    else
+        out=$(date +'<t:%s>')
+    fi
+    echo "$out"
+    printf "$out" | xclip -i -selection clipboard
+}
+
 sh ~/.config/nvim/base16/shell/scripts/base16-circus.sh
 
 JAVA_HOME="/usr/lib/jvm/default"
 PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin:/var/lib/snapd/snap/bin"
 
 eval $(thefuck --alias)
-eval "$(atuin init zsh --disable-up-arrow)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Init fzf (^T)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
 
 alias l="exa"
 alias ll="exa -lhFa --icons --git"
 alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias python="python3"
 alias mkdir="mkdir -pv"
-alias tree="tree -CA"
+alias tree="exa -ThFa --icons --git -I 'target|node_modules|venv'"
 alias :q="exit"
 
 # Git Aliases
@@ -216,3 +229,6 @@ alias gl='git log'
 alias gp='git pull'
 alias gpsh='git push'
 alias gss='git status -s'
+
+#eval "$(atuin init zsh --disable-up-arrow)"
+source ~/.zsh/atuin.zsh # This is needed because ^^^ outputs on a single line

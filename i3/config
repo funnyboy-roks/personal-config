@@ -63,6 +63,8 @@ bindsym $mod+v split v
 # Toggle fullscreen for the focused container
 bindsym $mod+f fullscreen toggle
 
+bindsym $mod+Shift+t exec ~/.config/i3/discord-time-prompt.zsh
+
 # Change container layout
 #   Disabled bc never used: bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -157,10 +159,9 @@ bindsym XF86AudioPrev exec playerctl --player playerctld previous
 assign [class="(?i)spotify"] $ws0
 assign [class="discord"] $ws0
 assign [class="jetbrains"] $ws1
-assign [class="firefox"] $ws3
 assign [class="gdlauncher"] $ws5
 assign [class="Minecraft"] $ws5
-assign [class="Steam"] $ws6
+assign [class="(?i)steam"] $ws6
 assign [class="Thunderbird"] $ws8
 
 ## </Window Config>
