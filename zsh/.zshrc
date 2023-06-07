@@ -189,13 +189,17 @@ gcd () {
 # If time is not specified, then uses the current time
 dt () {
     out=""
-    if ! [ -z $args ]; then
+    if ! [ -z "$1" ]; then
         flag=""
+        args=""
         if [[ "$1" =~ ^(-[dDtTfFR])$ ]]; then
             flag="${1/-/:}"
+            args=$(echo "${@:2}")
+        else
+            args="$*"
         fi
 
-        out=$(date +"<t:%s$flag>" -d "$*")
+        out=$(date +"<t:%s$flag>" -d "$args")
     else
         out=$(date +"<t:%s$flag>")
     fi
