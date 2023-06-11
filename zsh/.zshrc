@@ -205,9 +205,11 @@ dt () {
     fi
     echo "$out"
     printf "$out" | xclip -i -selection clipboard
+    notify-send 'Copied to clipboard' "&lt;${out:1:-1}&gt;"
 }
 
 sh ~/.config/nvim/base16/shell/scripts/base16-circus.sh
+setopt clobber
 
 JAVA_HOME="/usr/lib/jvm/default"
 PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin:/var/lib/snapd/snap/bin"
@@ -220,6 +222,7 @@ eval $(thefuck --alias)
 
 alias l="exa"
 alias ll="exa -lhFa --icons --git"
+alias cd="cd -P" # I don't like cd not following links
 alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias python="python3"
 alias mkdir="mkdir -pv"

@@ -52,6 +52,7 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'GutenYe/json5.vim'
+Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 

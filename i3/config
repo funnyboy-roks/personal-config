@@ -204,7 +204,7 @@ mode "spotify" {
         bindsym $mod+s mode "default"
 }
 
-set $dtime discord-time [d] [D] [t] [T] [f] [F] [R]
+set $dtime dt d[d.m.y]  D[dd M Y]  t[hh:mm]  T[hh:mm:ss]  f[D+t]  F[f+weekday] [R]
 bindsym $mod+t mode "$dtime"
 mode "$dtime" {
         bindsym       d exec ~/.config/i3/discord-time-prompt.zsh -d; mode "default"
