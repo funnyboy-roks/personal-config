@@ -35,17 +35,16 @@ cargo install marquee
 # Install firefox developer edition
 yay -S firefox-developer-edition
 
-# Let's get fish setup
-yay -S fish
-chsh -s $(which fish)
+# Let's get zsh setup
+yay -S zsh
+chsh -s $(which zsh)
+# There's more for the config, but I don't remember xP
 # Probably restart i3 to fully change shell for like alacritty
-# In fish:
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-fisher install pure-fish/pure
 
 # Setup some filesystem stuff
 mkdir -p ~/dev # This is for dev stuff
 mkdir -p ~/sync # This is for syncing via Unison
+
 # I really don't like these default dir names :P
 mv ~/Documents ~/documents
 mv ~/Downloads ~/downloads
@@ -57,8 +56,6 @@ rm -r ~/Templates ~/Music
 
 # Install unison
 yay -S unison
-
-# Install snaps (Not sure if necessary with yay)
 
 # Install AutoKey
 yay -S autokey-gtk autokey-common
