@@ -14,8 +14,11 @@ cd personal-config
 ./gen-links.sh
 cd ~
 
-# Install yay so we can use other repos
-pacman -S yay
+# Install yay so we can use the AUR
+pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
 
 # Install Rust/Cargo and some tools
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
