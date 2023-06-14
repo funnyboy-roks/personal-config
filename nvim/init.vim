@@ -462,6 +462,10 @@ nnoremap k gk
 
 nnoremap <A-j> 10gj
 nnoremap <A-k> 10gk
+vnoremap <A-j> 10gj
+vnoremap <A-k> 10gk
+xnoremap <A-j> 10gj
+xnoremap <A-k> 10gk
 
 " <leader><leader> toggles between buffers "
 nnoremap <leader><leader> <c-^>

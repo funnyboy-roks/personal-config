@@ -213,6 +213,7 @@ setopt clobber
 
 JAVA_HOME="/usr/lib/jvm/default"
 PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin:/var/lib/snapd/snap/bin"
+export EDITOR=nvim
 
 eval $(thefuck --alias)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

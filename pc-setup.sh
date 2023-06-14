@@ -2,7 +2,7 @@
 # Each line is meant to be run manually by the user.
 
 # Ignore the following line, it's just to keep people(me) from accidentally executing this script
-                                                  echo "Don't run this script directly!" && exit
+                                                   echo "Don't run this script directly!" && exit
 
 # ---------------------------------------------------------------
 #  Now would be the time to setup SSH keys (Ideally copied over)
