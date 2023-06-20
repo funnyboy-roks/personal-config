@@ -188,24 +188,17 @@ gcd () {
 # 
 # If time is not specified, then uses the current time
 dt () {
-    out=""
-    if ! [ -z "$1" ]; then
-        flag=""
-        args=""
-        if [[ "$1" =~ ^(-[dDtTfFR])$ ]]; then
-            flag="${1/-/:}"
-            args=$(echo "${@:2}")
-        else
-            args="$*"
-        fi
-
-        out=$(date +"<t:%s$flag>" -d "$args")
-    else
-        out=$(date +"<t:%s$flag>")
+    local args
+    local flag
+    if [[ "$1" =~ ^(-[dDtTfFR])$ ]]; then
+        flag="${1/-/:}"
+        args="${@:2}"
     fi
-    echo "$out"
-    printf "$out" | xclip -i -selection clipboard
-    notify-send 'Copied to clipboard' "&lt;${out:1:-1}&gt;"
+    : ${args:=${*-now}}
+    out=$(date +"t:%s$flag" -d "$args")
+    echo "<$out>"
+    printf "<$out>" | xclip -i -selection clipboard
+    notify-send 'Copied to clipboard' "&lt;$out&gt;"
 }
 
 sh ~/.config/nvim/base16/shell/scripts/base16-circus.sh
@@ -224,7 +217,6 @@ eval $(thefuck --alias)
 alias l="exa"
 alias ll="exa -lhFa --icons --git"
 alias cd="cd -P" # I don't like cd not following links
-alias instdir="cd ~/.config/gdlauncher_next/instances"
 alias python="python3"
 alias mkdir="mkdir -pv"
 alias tree="exa -ThFa --icons --git -I 'target|node_modules|venv'"
