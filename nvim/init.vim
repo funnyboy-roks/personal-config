@@ -418,7 +418,7 @@ map L $
 
 noremap <leader>p "+p
 "
-noremap <leader>c "+y
+noremap <leader>y "+y
 "
 
 " <leader>s for Rg search "
@@ -457,15 +457,15 @@ nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>
 
 " Move by line "
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
-nnoremap <A-j> 10gj
-nnoremap <A-k> 10gk
-vnoremap <A-j> 10gj
-vnoremap <A-k> 10gk
-xnoremap <A-j> 10gj
-xnoremap <A-k> 10gk
+noremap <A-j> 10gj
+noremap <A-k> 10gk
+noremap <A-j> 10gj
+noremap <A-k> 10gk
+noremap <A-j> 10gj
+noremap <A-k> 10gk
 
 " <leader><leader> toggles between buffers "
 nnoremap <leader><leader> <c-^>
@@ -521,10 +521,6 @@ autocmd BufRead *.xlsx.axlsx set filetype=ruby
 
 " Script plugins "
 autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
-
-" ============================================================================= "
-" # Footer "
-" ============================================================================= "
 
 " nvim "
 if has('nvim')
