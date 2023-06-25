@@ -10,7 +10,7 @@ if [ ! -z $1 ] && [ $1 = "toggle" ]; then
 fi
 
 # Wait for all to close
-while pgrep 'polybar' > /dev/null; do 0; done
+while pgrep 'polybar' > /dev/null; do echo 0 > /dev/null; done
 
 # Funky shit to make each monitor on its own line and work properly in the for
 #     This is probably only necessary because I don't know bash well enough...

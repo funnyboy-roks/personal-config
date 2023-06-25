@@ -5,6 +5,7 @@ xset +dpms dpms 5 5 5
 playerctl -a pause
 polychromatic-cli -o brightness -p 0
 dunstctl set-paused true
+pactl set-sink-mute @DEFAULT_SINK@ true
 
 IMAGE="$HOME/.config/autorandr/$(autorandr --current)/lock.png"
 if ! [ -e $IMAGE ]; then
@@ -15,6 +16,8 @@ betterlockscreen -l
 
 xset dpms 0 0 0
 dunstctl set-paused false
+
+pactl set-sink-mute @DEFAULT_SINK@ false # TODO: make this resume the previous state
 
 polychromatic-cli -o brightness -p 100
 
