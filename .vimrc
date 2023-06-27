@@ -87,7 +87,7 @@ tnoremap <C-j> <Esc>
 map H ^
 map L $
 noremap <leader>p "+p
-noremap <leader>c "+y
+noremap <leader>y "+y
 
 " No arrow keys
 nnoremap <up> <nop>
@@ -98,11 +98,11 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Move by line
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
-nnoremap <A-j> 10gj
-nnoremap <A-k> 10gk
+nnoremap <esc>j 10gj
+nnoremap <esc>k 10gk
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
