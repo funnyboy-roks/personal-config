@@ -214,6 +214,9 @@ eval $(thefuck --alias)
 # Init fzf (^T)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export MANPAGER='nvim +Man!'
+export PAGER='nvim -R'
+
 alias l="exa"
 alias ll="exa -lhFa --icons --git"
 alias cd="cd -P" # I don't like cd not following links

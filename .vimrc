@@ -101,6 +101,7 @@ inoremap <right> <nop>
 noremap j gj
 noremap k gk
 
+" <esc> is needed because vim doesn't like `<M-j>` in a lot of terminals
 nnoremap <esc>j 10gj
 nnoremap <esc>k 10gk
 

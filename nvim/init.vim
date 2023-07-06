@@ -518,6 +518,7 @@ autocmd BufRead *.lds set filetype=ld
 autocmd BufRead *.tex set filetype=tex
 autocmd BufRead *.trm set filetype=c
 autocmd BufRead *.xlsx.axlsx set filetype=ruby
+autocmd BufRead *.mcmeta set filetype=json
 
 " Script plugins "
 autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
