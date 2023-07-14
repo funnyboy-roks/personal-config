@@ -87,6 +87,9 @@ hi Normal ctermbg=NONE
 hi SpellBad cterm=undercurl ctermbg=none gui=undercurl guisp=LightRed
 hi SpellCap cterm=undercurl ctermbg=none gui=undercurl guisp=LightBlue
 
+" Better md block quotes
+hi! link mkdBlockquote Special
+
 " LSP configuration
 lua << END
 local cmp = require'cmp'
@@ -417,6 +420,8 @@ map L $
 "noremap <leader>c :w !xsel -ib<cr><cr>
 
 noremap <leader>p "+p
+"
+noremap <leader>P "+P
 "
 noremap <leader>y "+y
 "

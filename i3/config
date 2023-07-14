@@ -1,9 +1,3 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
-no_focus [class="*"]
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -23,20 +17,16 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym $mod+F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym $mod+F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym $mod+F10 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec /home/funnyboy_roks/.config/i3/alacritty-cwd.sh
+bindsym $mod+Return exec ~/.config/i3/alacritty-cwd.sh
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-# Start ulauncher (program launcher)
+# Open ulauncher
 bindsym $mod+d exec ulauncher-toggle
 
 # Toggle polybar
@@ -63,8 +53,6 @@ bindsym $mod+v split v
 # Toggle fullscreen for the focused container
 bindsym $mod+f fullscreen toggle
 
-bindsym $mod+Shift+t exec ~/.config/i3/discord-time-prompt.zsh
-
 # Change container layout
 #   Disabled bc never used: bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -89,6 +77,7 @@ set $ws4 "4"
 set $ws5 "5"
 #   Other games
 set $ws6 "6"
+#   Etc
 set $ws7 "7"
 set $ws8 "8"
 #   Small screen -- Stats and stuff
@@ -142,8 +131,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit?' -B ' Yes ' 'i3-msg exit' -f 'pango:Anonymous Pro 36'"
 
 # Lock screen
-bindsym $mod+Escape exec /home/funnyboy_roks/.config/i3/lock
-bindsym XF86Sleep exec /home/funnyboy_roks/.config/i3/lock
+bindsym $mod+Escape exec ~/.config/i3/lock
+bindsym XF86Sleep exec ~/.config/i3/lock
 
 # Screenshot
 bindsym Ctrl+Shift+Print exec "rm ~/pictures/screenshot.png; flameshot gui -c -p ~/pictures/screenshot.png"
@@ -159,12 +148,13 @@ bindsym XF86AudioPrev exec playerctl --player playerctld previous
 ## <Window Config>
 
 assign [class="(?i)spotify"] $ws0
-assign [class="discord"] $ws0
-assign [class="jetbrains"] $ws1
-assign [class="gdlauncher"] $ws5
-assign [class="Minecraft"] $ws5
+assign [class="(?i)discord"] $ws0
+assign [class="(?i)jetbrains"] $ws1
+assign [class="(?i)gdlauncher"] $ws5
+assign [class="(?i)minecraft"] $ws5
+assign [class="(?i)modrinth-app"] $ws5
 assign [class="(?i)steam"] $ws6
-assign [class="Thunderbird"] $ws8
+assign [class="(?i)thunderbird"] $ws8
 
 ## </Window Config>
 
@@ -194,7 +184,7 @@ mode "resize" {
     bindsym $mod+r mode "default"
 }
 
-set $spotify-loop-mode loop [t]rack [p]laylist [n]one
+set $spotify-loop-mode sl [t]rack [p]laylist [n]one
 mode "$spotify-loop-mode" {
     bindsym t exec playerctl -p spotify loop track    ; mode "default"
     bindsym p exec playerctl -p spotify loop playlist ; mode "default"
@@ -206,13 +196,13 @@ mode "$spotify-loop-mode" {
     bindsym $mod+s mode "default"
 }
 
-set $spotify-mode spotify [s]huffle [l]oop
+set $spotify-mode s  [s]huffle [l]oop
 bindsym $mod+s mode "$spotify-mode"
 mode "$spotify-mode" {
 
     bindsym s exec playerctl -p spotify shuffle toggle ; mode "default"
+    bindsym space exec playerctl -p spotify play-pause ; mode "default
     bindsym l mode "$spotify-loop-mode"
-    bindsym space exec playerctl -p spotify play-pause
 
     # Back to default: <Esc>, <C-j>, or <M-s>
     bindsym Escape mode "default"
@@ -256,11 +246,11 @@ default_border none
 # Ayy finally 4.22
 gaps inner 15
 
-exec_always --no-startup-id $HOME/.config/i3/polybar/launch.sh
+exec_always --no-startup-id ~/.config/i3/polybar/launch.sh
 
 # Config displays and set wallpaper (via autorandr)
 exec_always autorandr -c
-exec_always dunst -conf /home/funnyboy_roks/.config/i3/dunst/dunstrc
+exec_always dunst -conf ~/.config/i3/dunst/dunstrc
 exec_always numlockx on
 
 # Open Apps
@@ -272,5 +262,3 @@ exec picom
 exec ulauncher --hide-window
 exec flameshot
 exec thunderbird
-
-no_focus [class="*"]
