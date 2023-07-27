@@ -224,6 +224,7 @@ alias python="python3"
 alias mkdir="mkdir -pv"
 alias tree="exa -ThFa --icons --git -I 'target|node_modules|venv'"
 alias :q="exit"
+[[ $TERM = "alacritty" ]] && alias ssh="TERM=xterm-256color ssh" # most servers don't have alacritty terminfo
 
 # Git Aliases
 alias ga='git add'

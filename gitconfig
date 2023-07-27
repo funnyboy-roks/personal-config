@@ -1,0 +1,15 @@
+[user]
+	email = funnyboyroks@gmail.com
+	name = funnyboy-roks
+[core]
+	editor = nvim
+    pager = "nvim -R"
+[init]
+	defaultBranch = main
+[color]
+    pager = no
+[url "git@github.com"]
+    # Allows for `git clone gh:funnyboy-roks/personal-config`
+    insteadOf = gh
+[submodule]
+    recurse = true

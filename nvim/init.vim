@@ -54,6 +54,9 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'GutenYe/json5.vim'
 Plug 'tikhomirov/vim-glsl'
 
+" String coersion
+Plug 'tpope/vim-abolish'
+
 call plug#end()
 
 if has('nvim')

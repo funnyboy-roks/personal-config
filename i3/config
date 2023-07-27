@@ -58,6 +58,8 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+bindsym $mod+Shift+o [con_mark="back"] focus; [con_mark="back"] unmark
+
 bindsym $mod+Shift+space floating toggle
 # Toggle sticky (Independent of workspaces)
 bindsym $mod+Shift+s sticky toggle
@@ -196,17 +198,24 @@ mode "$spotify-loop-mode" {
     bindsym $mod+s mode "default"
 }
 
-set $spotify-mode s  [s]huffle [l]oop
+set $spotify-mode s  [g]o [s]huffle [l]oop [n]ext [N]-previous
 bindsym $mod+s mode "$spotify-mode"
 mode "$spotify-mode" {
 
+    bindsym g mark --add 'back' ; [class="(?i)spotify"] focus ; mode "default";
+
     bindsym s exec playerctl -p spotify shuffle toggle ; mode "default"
-    bindsym space exec playerctl -p spotify play-pause ; mode "default
+
+    bindsym n       exec playerctl -p spotify next
+    bindsym Shift+n exec playerctl -p spotify previous
+    bindsym space   exec playerctl -p spotify play-pause ; mode "default"
+
     bindsym l mode "$spotify-loop-mode"
 
     # Back to default: <Esc>, <C-j>, or <M-s>
     bindsym Escape mode "default"
     bindsym Ctrl+j mode "default"
+    bindsym Ctrl+l mode "default"
     bindsym $mod+s mode "default"
 }
 
@@ -256,7 +265,7 @@ exec_always numlockx on
 # Open Apps
 exec guake
 exec discord
-exec autokey-gtk
+exec autokey-qt
 exec spotify
 exec picom
 exec ulauncher --hide-window

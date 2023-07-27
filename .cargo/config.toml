@@ -1,0 +1,12 @@
+[alias]
+i = "install"
+tiny = "b --profile tiny"
+
+# Config based on https://github.com/johnthagen/min-sized-rust
+# Very useful for reducing binary size, though it does make some things less great,
+# especially with stripping debug symbols
+[profile.tiny]
+inherits = "release"
+opt-level = "z"
+strip = true
+lto = true
