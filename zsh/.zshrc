@@ -201,6 +201,10 @@ dt () {
     notify-send 'Copied to clipboard' "&lt;$out&gt;"
 }
 
+elapsed () {
+    ps -eo pid,cmd,stime,etime | \grep -iE "$1|PID" | \grep -vE '(grep|ps)'
+}
+
 sh ~/.config/nvim/base16/shell/scripts/base16-circus.sh
 setopt clobber
 
