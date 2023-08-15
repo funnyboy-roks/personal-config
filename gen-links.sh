@@ -25,6 +25,7 @@ mkln "nvim"                "$HOME/.config/nvim"
 mkln "ulauncher"           "$HOME/.config/ulauncher"
 mkln "autorandr"           "$HOME/.config/autorandr"
 mkln "picom"               "$HOME/.config/picom"
+mkln "user-dirs.dirs"      "$HOME/.config/user-dirs.dirs"
 mkln ".xinitrc"            "$HOME/.xinitrc"
 mkln ".cargo/config.toml"  "$HOME/.cargo/config.toml"
 

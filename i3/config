@@ -253,7 +253,7 @@ client.urgent           $light-bg-color  $light-bg-color  $urgent-text-color   #
 default_border none
 
 # Ayy finally 4.22
-gaps inner 15
+#gaps inner 15
 
 exec_always --no-startup-id ~/.config/i3/polybar/launch.sh
 

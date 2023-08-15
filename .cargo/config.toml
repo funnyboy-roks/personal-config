@@ -10,3 +10,6 @@ inherits = "release"
 opt-level = "z"
 strip = true
 lto = true
+
+[build]
+target-dir = "/home/funnyboy_roks/.cargo-target"
