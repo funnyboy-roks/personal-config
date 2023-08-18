@@ -1,43 +1,19 @@
 source ~/.config/nvim/base16/shell/scripts/base16-circus.sh
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ZDOTDIR=~/.zsh/zim
 
-#prompt_newline="​ "
 zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:git:dirty color 242
 
-
-# Start configuration added by Zim install {{{
 setopt HIST_IGNORE_ALL_DUPS
 
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-#bindkey -v
+# Evil mode because I don't want my command-line to change modes while I'm doing shit
+bindkey -e
 
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
 # Module configuration
-
-# git
-# Set a custom prefix for the generated aliases. The default prefix is 'G'.
-#zstyle ':zim:git' aliases-prefix 'g'
-
-# input
-# Append `../` to your input for each `.` you type after an initial `..`
-#zstyle ':zim:input' double-dot-expand yes
-
-# termtitle
-# Set a custom terminal title format using prompt expansion escape sequences.
-# See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Simple-Prompt-Escapes
-# If none is provided, the default '%n@%m: %~' is used.
-#zstyle ':zim:termtitle' format '%1~'
 
 # zsh-autosuggestions
 # Disable automatic widget re-binding on each precmd. This can be set when
@@ -87,13 +63,11 @@ for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search
 for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
-# }}} End configuration added by Zim install
 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 
 # Personal Config
@@ -103,6 +77,7 @@ mkcd () {
     mkdir $1 && cd $1
 }
 
+# Extact a file or files depending on their file suffix
 # extract <files...>
 extract () {
     if [ -z "$1" ]; then
@@ -115,17 +90,10 @@ extract () {
             if [ -f "$n" ] ; then
                 case "${n%,}" in
                     *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                    tar xvf "$n"       ;;
-                    *.lzma)      unlzma ./"$n"      ;;
-                    *.bz2)       bunzip2 ./"$n"     ;;
-                    *.rar)       unrar x -ad ./"$n" ;;
-                    *.gz)        gunzip ./"$n"      ;;
-                    *.zip)       unzip ./"$n"       ;;
-                    *.z)         uncompress ./"$n"  ;;
-                    *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
-                    7z x ./"$n"        ;;
-                    *.xz)        unxz ./"$n"        ;;
-                    *.exe)       cabextract ./"$n"  ;;
+                        tar xvf "$n"       
+                    ;;
+                    *.gz)  gunzip ./"$n" ;;
+                    *.zip) unzip ./"$n" ;;
                     *)
                         echo "extract: '$n' - unknown archive method"
                         return 1
@@ -147,22 +115,30 @@ fsa () {
 }
 
 # Sync local files with server files
+# See `fsa` above
 fs () {
     unison -auto ~/sync ssh://server/sync
 }
 
+# b/c I'm dumb and will forget
 my-ip () {
-    printf " --- IP Information --- \n"
-    printf "${blue}Internal: ${reset}%s\n" $(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
-    printf "${blue}External: ${reset}%s\n" $(curl -s http://ifconfig.io)
-    printf " ---------------------- \n"
+    printf "Use \`ips\`\n"
+    exit 1
 }
 
+# View information about my IPs
+ips () {
+    printf "Internal IP: %s\n" $(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+    printf "External IP: %s\n" $(curl -s http://ifconfig.io)
+}
+
+# Run a task in the bg
 # bg <command>
 bg () {
     setsid $@ &> /dev/null &
 }
 
+# Clone one of my personal repos
 # gcme <repo>
 gcme () {
     git clone git@github.com:funnyboy-roks/$1.git $2
@@ -174,12 +150,13 @@ gcme () {
     fi
 }
 
+# Clone a git repo and cd into the dir that it makes
 gcd () {
     git clone $1 $2
-    if ! [ -z $2 ] ; then
+    if ! [ -z $2 ] ; then # if $2 is specified, that's the dir in which the repo was cloned
         cd $2
     else
-        cd "${"$(basename $1)"%.*}"
+        cd "${"$(basename $1)"%.*}" # otherwise, get it from the name
     fi
 }
 
@@ -201,16 +178,17 @@ dt () {
     notify-send 'Copied to clipboard' "&lt;$out&gt;"
 }
 
+# Get the time elapsed since a program started
+# Searches all running processes for the name provided in $1
 elapsed () {
     ps -eo pid,cmd,stime,etime | \grep -iE "$1|PID" | \grep -vE '(grep|ps)'
 }
 
-sh ~/.config/nvim/base16/shell/scripts/base16-circus.sh
-setopt clobber
+setopt clobber # Allow things like echo 'a' > b.txt if b.txt exists.
+setopt globdots # Tab complete "hidden" files (hate that term)
 
 JAVA_HOME="/usr/lib/jvm/default"
-PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin:/var/lib/snapd/snap/bin"
-export EDITOR=nvim
+PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin"
 
 eval $(thefuck --alias)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -218,22 +196,24 @@ eval $(thefuck --alias)
 # Init fzf (^T)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export PAGER='nvim -R'
 
-alias l="exa"
 alias ll="exa -lhFa --icons --git"
-alias cd="cd -P" # I don't like cd not following links
+alias cd="cd -P" # I like cd to resolve links
 alias python="python3"
 alias mkdir="mkdir -pv"
 alias tree="exa -ThFa --icons --git -I 'target|node_modules|venv'"
-alias :q="exit"
-[[ $TERM = "alacritty" ]] && alias ssh="TERM=xterm-256color ssh" # most servers don't have alacritty terminfo
+alias :q="exit" # I can't help the vi
+
+# Most servers don't have alacritty term info
+# This is less useful since I'm using tmux now
+[[ $TERM = "alacritty" ]] && alias ssh="TERM=xterm-256color ssh"
 
 # Git Aliases
 alias ga='git add'
 alias gaa='git add -A'
-alias gas='git add src'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gd='git diff'
@@ -242,5 +222,4 @@ alias gp='git pull'
 alias gpsh='git push'
 alias gss='git status -s'
 
-#eval "$(atuin init zsh --disable-up-arrow)"
-source ~/.zsh/atuin.zsh # This is needed because ^^^ outputs on a single line
+eval "$(atuin init zsh --disable-up-arrow)"
