@@ -1,17 +1,15 @@
 " This is a very simple .vimrc that I can use on my servers where I don't want
-" to install neovim and my full config.
+" to install neovim and my full config (which tends to be a lot of steps, and
+" more than is ever needed).
 "
-" This is effectively a simplified version of init.vim
+" This is effectively a simplified version of my init.vim (/nvim/init.vim in this repo)
 " Download with:
 "     wget -O ~/.vimrc https://raw.githubusercontent.com/funnyboy-roks/personal-config/main/.vimrc
 
 let mapleader = "\<Space>"
 
-" Open hotkeys
 map <C-p> :Files<CR>
 nmap <leader>; :Buffers<CR>
-
-" Quick-save
 nmap <leader>w :w<CR>
 
 filetype plugin indent on
@@ -28,10 +26,10 @@ let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
 
-" Always draw sign column. Prevent buffer moving when adding/deleting sign.
+" always draw sign column
 set signcolumn=yes
 
-" Permanent undo
+" permanent undo
 set undodir=~/.vimdid
 set undofile
 
@@ -40,38 +38,38 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 
-" Proper search
+" proper search
 set incsearch
 set ignorecase
 set smartcase
 set gdefault
 
-" Search results centered please
+" search results centered please
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
-" Very magic by default
+" very magic by default
 nnoremap ? ?\v
 nnoremap / /\v
 cnoremap %s/ %sm/
 
-set guioptions-=T " Remove toolbar
-set vb t_vb= " No more beeps
-set backspace=2 " Backspace over newlines
+set guioptions-=T
+set vb t_vb=
+set backspace=2
 set nofoldenable
 set ttyfast
 set lazyredraw
 set synmaxcol=500
 set laststatus=2
-set relativenumber " Relative line numbers
-set number " Also show current absolute line
-set diffopt+=iwhite " No whitespace in vimdiff
+set relativenumber
+set number
+set diffopt+=iwhite " no whitespace in vimdiff
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
-set showcmd " Show (partial) command in status line.
+set showcmd
 nnoremap ; :
 
 nnoremap <C-j> <Esc>
@@ -86,10 +84,14 @@ tnoremap <C-j> <Esc>
 
 map H ^
 map L $
+
+" Note: for this to work, vim needs to be compiled with clipboard support --
+" i.e. when you install vim-gtk on ubuntu.  Without it, the `+` register gets
+" ignored and just copies to the unnamed register
 noremap <leader>p "+p
 noremap <leader>y "+y
 
-" No arrow keys
+" no arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 inoremap <up> <nop>
@@ -97,7 +99,7 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" Move by line
+" move by visual line
 noremap j gj
 noremap k gk
 
@@ -105,11 +107,25 @@ noremap k gk
 nnoremap <esc>j 10gj
 nnoremap <esc>k 10gk
 
-" <leader><leader> toggles between buffers
+" toggle between buffers
 nnoremap <leader><leader> <c-^>
 
-" <leader>, shows/hides hidden characters
+" show/hide hidden characters
 nnoremap <leader>, :set invlist<cr>
 
-" <leader>q shows stats
+" show stats
 nnoremap <leader>q g<c-g>
+
+" make it such that copying over ssh is a bit easier by removing line numbers
+" and sign column (for copying in Alacritty)
+" This feels like a bit of a hacky solution.  One could alternatively have the
+" clipboard version of Vim installed on the ssh session, and set the following
+" in their ssh config.
+"   ForwardX11 yes
+"   ForwardX11Trusted yes
+"
+" I'm using this because it allows me to use vim without the clipboard
+" integration on servers where I have less control.
+nnoremap <leader>Y :set number! \| set relativenumber! \| set signcolumn=no<cr>
+" reset back to "normal" layout
+nnoremap <leader><Esc> :set number \| set relativenumber \| set signcolumn=yes<cr>

@@ -206,6 +206,7 @@ alias python="python3"
 alias mkdir="mkdir -pv"
 alias tree="exa -ThFa --icons --git -I 'target|node_modules|venv'"
 alias :q="exit" # I can't help the vi
+alias serve="basic-http-server" # https://github.com/brson/basic-http-server
 
 # Most servers don't have alacritty term info
 # This is less useful since I'm using tmux now

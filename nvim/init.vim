@@ -378,14 +378,15 @@ au TextYankPost * silent! lua vim.highlight.on_yank() " Highlight yank "
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:• "
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 
+" =============================================================================
+" Shortcuts
 " ============================================================================= "
-" # Keyboard shortcuts "
-" ============================================================================= "
+
 " ; as : "
 nnoremap ; :
 
-" Ctrl+j and Ctrl+k as Esc "
-" Ctrl-j is a little awkward unfortunately: "
+" C-j as Esc "
+" C-j is a little awkward unfortunately: "
 " https://github.com/neovim/neovim/issues/5916 "
 " So we also map Ctrl+k "
 nnoremap <C-j> <Esc>
@@ -398,16 +399,6 @@ onoremap <C-j> <Esc>
 lnoremap <C-j> <Esc>
 tnoremap <C-j> <Esc>
 
-nnoremap <C-k> <Esc>
-inoremap <C-k> <Esc>
-vnoremap <C-k> <Esc>
-snoremap <C-k> <Esc>
-xnoremap <C-k> <Esc>
-cnoremap <C-k> <C-c>
-onoremap <C-k> <Esc>
-lnoremap <C-k> <Esc>
-tnoremap <C-k> <Esc>
-
 " Ctrl+h to stop searching "
 vnoremap <C-h> :nohlsearch<cr>
 nnoremap <C-h> :nohlsearch<cr>
@@ -415,12 +406,6 @@ nnoremap <C-h> :nohlsearch<cr>
 " Jump to start and end of line using the home row keys "
 map H ^
 map L $
-
-" Neat X clipboard integration "
-" <space>p will paste clipboard into buffer "
-" <space>c will copy entire buffer into clipboard "
-"noremap <leader>p :read !xsel --clipboard --output<cr>
-"noremap <leader>c :w !xsel -ib<cr><cr>
 
 noremap <leader>p "+p
 "
