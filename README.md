@@ -34,7 +34,7 @@ Most configs can be found in this repo.
 
 [Alacritty]: https://github.com/alacritty/alacritty
 [Guake]: https://github.com/Guake/guake
-[tmux]: 
+[tmux]: https://github.com/tmux/tmux/
 [zsh]: https://www.zsh.org/
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
 [pure]: https://github.com/romkatv/powerlevel10k#pure-compatibility
