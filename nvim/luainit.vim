@@ -105,4 +105,9 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 lspconfig.tsserver.setup{}
 lspconfig.svelte.setup{}
 lspconfig.cssls.setup{}
+lspconfig.clangd.setup{}
+
+lspconfig.java_language_server.setup {
+    cmd = { '/home/funnyboy_roks/dev/lsp/java-language-server/dist/lang_server_linux.sh' } 
+}
 EOF

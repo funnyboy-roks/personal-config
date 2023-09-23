@@ -20,6 +20,7 @@ set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-o
 set encoding=utf-8
 set scrolloff=2
 set noshowmode
+set mouse=a
 set hidden
 set nowrap
 set nojoinspaces
