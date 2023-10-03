@@ -187,6 +187,8 @@ elapsed () {
 setopt clobber # Allow things like echo 'a' > b.txt if b.txt exists.
 setopt globdots # Tab complete "hidden" files (hate that term)
 
+tabs -4
+
 JAVA_HOME="/usr/lib/jvm/default"
 PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin"
 
@@ -195,6 +197,8 @@ eval $(thefuck --alias)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Init fzf (^T)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+unalias l
 
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
