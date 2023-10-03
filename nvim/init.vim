@@ -19,7 +19,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'lambdalisue/suda.vim' " Allow reading/writing from files which require sudo (:SudaRead/:SudaWrite)
 
 " GUI enhancements
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 Plug 'andymass/vim-matchup'
 
 " Fuzzy finder
@@ -295,7 +295,7 @@ set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
 set scrolloff=2
-set noshowmode
+"set noshowmode
 set hidden
 set nowrap
 set nojoinspaces

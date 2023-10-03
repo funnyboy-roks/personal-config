@@ -12,14 +12,11 @@ map <C-p> :Files<CR>
 nmap <leader>; :Buffers<CR>
 nmap <leader>w :w<CR>
 
-colorscheme darkblue
-
 filetype plugin indent on
 set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
 set scrolloff=2
-set noshowmode
 set mouse=a
 set hidden
 set nowrap
