@@ -12,10 +12,15 @@ if ! [ -e $IMAGE ]; then
     IMAGE=$HOME/sync/wallpapers/desktop.png
 fi
 #i3lock -i $IMAGE -fen
-betterlockscreen -l
+
+# This is rather sad, but idrc
+lock_command='betterlockscreen -l'
+time_locked=$(/usr/bin/time -f '%E' bash -c "$lock_command &> /dev/null" 2>&1)
 
 xset dpms 0 0 0
 dunstctl set-paused false
+
+notify-send 'Time Locked:' "$time_locked"
 
 #pactl set-sink-mute @DEFAULT_SINK@ false # TODO: make this resume the previous state
 
