@@ -258,9 +258,8 @@ default_border none
 exec_always --no-startup-id ~/.config/i3/polybar/launch.sh
 
 # Config displays and set wallpaper (via autorandr)
-exec_always autorandr -c
+exec_always autorandr -cf
 exec_always dunst -conf ~/.config/i3/dunst/dunstrc
-exec_always numlockx on
 
 # Open Apps
 exec guake
