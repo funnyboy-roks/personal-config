@@ -1,5 +1,4 @@
 set shell=/bin/bash
-"set shellcmdflag=-ic " load bashrc (for aliases)
 let mapleader = "\<Space>"
 
 " =============================================================================
