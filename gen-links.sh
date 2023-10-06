@@ -16,7 +16,6 @@ function mkln () {
 }
 
 mkln "i3"                   "$HOME/.config/i3"
-mkln "fish/config.fish"     "$HOME/.config/fish/config.fish"
 mkln "zsh"                  "$HOME/.zsh"
 mkln "zsh/.zshrc"           "$HOME/.zshrc"
 mkln ".vimrc"               "$HOME/.vimrc"
