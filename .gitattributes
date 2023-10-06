@@ -1,2 +1,2 @@
 gitconfig linguist-language=gitconfig
-.idevimrc linguist-language=Vim-Script
+.ideavimrc linguist-language=vim
