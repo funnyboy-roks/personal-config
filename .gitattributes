@@ -1,2 +1,5 @@
 gitconfig linguist-language=gitconfig
 .ideavimrc linguist-language=vim
+.tmux.conf linguist-language=sh
+.xinitrc linguist-language=sh
+user-dirs.dirs linguist-language=sh
