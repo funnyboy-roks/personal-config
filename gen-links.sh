@@ -29,5 +29,6 @@ mkln ".xinitrc"             "$HOME/.xinitrc"
 mkln ".cargo/config.toml"   "$HOME/.cargo/config.toml"
 mkln "i3/betterlockscreen"  "$HOME/.config/betterlockscreen/betterlockscreenrc"
 
-mkln "lemurs/config.toml"   "/etc/lemurs/config.toml" # This may need sudo to run
-mkln "lemurs/wms"           "/etc/lemurs/wms" # This may need sudo to run
+# These need sudo to run, but there here for documentation
+mkln "lemurs/config.toml"   "/etc/lemurs/config.toml"
+mkln "lemurs/wms"           "/etc/lemurs/wms"
