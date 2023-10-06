@@ -10,7 +10,7 @@ function mkln () {
         mv "$to" "$to_OLD" > /dev/null 2> /dev/null && echo "Moved $to to $to_OLD"
     else # Otherwise, yeet it
         target="$(readlink -f "$to")"
-        rm "$to" > /dev/null 2> /dev/null && echo "Removed previous link ${to/$HOME/~} -> ${target/$HOME/~}"
+        rm "$to" &> /dev/null && echo "Removed previous link ${to/$HOME/~} -> ${target/$HOME/~}"
     fi
     ln -s "$(pwd)/$from" "$to"
 }
