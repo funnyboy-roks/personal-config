@@ -1,0 +1,14 @@
+" This is the config file for the IdeaVim IntellIJ plugin: https://plugins.jetbrains.com/plugin/164-ideavim
+
+source ~/.config/nvim/init.vim " not perfect, but is okay
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+map <leader>a <Action>(ShowIntentionActions)
+map <C-p> <Action>(GotoFile)
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" Use standard keybinds that don't seem to exist in ideavim for some reason
+nnoremap Y y$
+nnoremap D d$
+nnoremap C c$
