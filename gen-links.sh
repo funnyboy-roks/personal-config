@@ -15,19 +15,20 @@ function mkln () {
     ln -s "$(pwd)/$from" "$to"
 }
 
-mkln "i3"                  "$HOME/.config/i3"
-mkln "fish/config.fish"    "$HOME/.config/fish/config.fish"
-mkln "zsh"                 "$HOME/.zsh"
-mkln "zsh/.zshrc"          "$HOME/.zshrc"
-mkln ".vimrc"              "$HOME/.vimrc"
-mkln "alacritty"           "$HOME/.config/alacritty"
-mkln "nvim"                "$HOME/.config/nvim"
-mkln "ulauncher"           "$HOME/.config/ulauncher"
-mkln "autorandr"           "$HOME/.config/autorandr"
-mkln "picom"               "$HOME/.config/picom"
-mkln "user-dirs.dirs"      "$HOME/.config/user-dirs.dirs"
-mkln ".xinitrc"            "$HOME/.xinitrc"
-mkln ".cargo/config.toml"  "$HOME/.cargo/config.toml"
+mkln "i3"                   "$HOME/.config/i3"
+mkln "fish/config.fish"     "$HOME/.config/fish/config.fish"
+mkln "zsh"                  "$HOME/.zsh"
+mkln "zsh/.zshrc"           "$HOME/.zshrc"
+mkln ".vimrc"               "$HOME/.vimrc"
+mkln "alacritty"            "$HOME/.config/alacritty"
+mkln "nvim"                 "$HOME/.config/nvim"
+mkln "ulauncher"            "$HOME/.config/ulauncher"
+mkln "autorandr"            "$HOME/.config/autorandr"
+mkln "picom"                "$HOME/.config/picom"
+mkln "user-dirs.dirs"       "$HOME/.config/user-dirs.dirs"
+mkln ".xinitrc"             "$HOME/.xinitrc"
+mkln ".cargo/config.toml"   "$HOME/.cargo/config.toml"
+mkln "i3/betterlockscreen"  "$HOME/.config/betterlockscreen/betterlockscreenrc"
 
-mkln "lemurs/config.toml"  "/etc/lemurs/config.toml" # This may need sudo to run
-mkln "lemurs/wms"          "/etc/lemurs/wms" # This may need sudo to run
+mkln "lemurs/config.toml"   "/etc/lemurs/config.toml" # This may need sudo to run
+mkln "lemurs/wms"           "/etc/lemurs/wms" # This may need sudo to run
