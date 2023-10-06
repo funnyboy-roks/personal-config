@@ -7,7 +7,7 @@ let mapleader = "\<Space>"
 " Load vundle
 set nocompatible
 filetype off
-set rtp+=~/.config/nvim/base16/vim/
+set rtp+=~/.config/nvim/base16/nvim/
 
 " Load plugins
 call plug#begin()
