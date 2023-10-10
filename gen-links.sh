@@ -27,6 +27,7 @@ mkln "autorandr"            "$HOME/.config/autorandr"
 mkln "picom"                "$HOME/.config/picom"
 mkln "user-dirs.dirs"       "$HOME/.config/user-dirs.dirs"
 mkln ".xinitrc"             "$HOME/.xinitrc"
+mkln ".xmodmap"             "$HOME/.xmodmap"
 mkln ".cargo/config.toml"   "$HOME/.cargo/config.toml"
 mkln "i3/betterlockscreen"  "$HOME/.config/betterlockscreen/betterlockscreenrc"
 

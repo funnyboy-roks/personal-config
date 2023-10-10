@@ -261,6 +261,8 @@ exec_always --no-startup-id ~/.config/i3/polybar/launch.sh
 exec_always autorandr -cf
 exec_always dunst -conf ~/.config/i3/dunst/dunstrc
 
+exec_always xmodmap ~/.xmodmap
+
 # Open Apps
 exec guake
 exec discord
