@@ -437,6 +437,9 @@ command! -bang -nargs=? -complete=dir Files
 " Open new file adjacent to current file
 nnoremap <leader>o :e <C-R>=expand("%:p:h") . "/" <CR>
 
+" Remove "Type :qa! and press ..." stupid message
+noremap <C-c> <nop>
+
 " No arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
