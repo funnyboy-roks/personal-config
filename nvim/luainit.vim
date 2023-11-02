@@ -105,9 +105,14 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 lspconfig.tsserver.setup{}
 lspconfig.svelte.setup{}
 lspconfig.cssls.setup{}
+<<<<<<< Updated upstream
 lspconfig.clangd.setup{}
 
 lspconfig.java_language_server.setup {
     cmd = { '/home/funnyboy_roks/dev/lsp/java-language-server/dist/lang_server_linux.sh' } 
+=======
+lspconfig.java_language_server.setup{
+    cmd = '/home/funnyboy_roks/dev/java_language_server/dist/lang_server_linux.sh'
+>>>>>>> Stashed changes
 }
 EOF

@@ -58,6 +58,9 @@ Plug 'tikhomirov/vim-glsl'
 " String coersion
 Plug 'tpope/vim-abolish'
 
+" Give me markdown preview (really just for maths)
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 call plug#end()
 
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
@@ -271,6 +274,11 @@ let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
+
+" Markdown Preview
+let g:mkdp_auto_close = 0
+let g:mkdp_page_title = '${name}'
+let g:mkdp_combine_preview = 0
 
 " Completion
 " Better completion
