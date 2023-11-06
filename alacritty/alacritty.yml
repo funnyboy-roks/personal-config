@@ -438,10 +438,11 @@ cursor:
 # Default:
 #   - (Linux/BSD/macOS) `$SHELL` or the user's login shell, if `$SHELL` is unset
 #   - (Windows) powershell
-#shell:
-#  program: /usr/bin/zsh
-#  args:
-#    - --login
+shell:
+  program: /usr/bin/zsh
+  args:
+    - -c
+    - 'source ~/.zshrc && /usr/bin/tmux new'
 
 # Startup directory
 #
