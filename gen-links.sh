@@ -7,7 +7,7 @@ function mkln () {
     to="$2"
 
     if ! [ -L "$to" ]; then # Move if it is not a link
-        mv "$to" "$to_OLD" > /dev/null 2> /dev/null && echo "Moved $to to $to_OLD"
+        mv "$to" "${to}_OLD" > /dev/null 2> /dev/null && echo "Moved $to to ${to}_OLD"
     else # Otherwise, yeet it
         target="$(readlink -f "$to")"
         rm "$to" &> /dev/null && echo "Removed previous link ${to/$HOME/~} -> ${target/$HOME/~}"
