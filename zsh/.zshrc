@@ -60,8 +60,8 @@ zmodload -F zsh/terminfo +p:terminfo
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
 for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('^[[H' '^H') bindkey -s ${key} 'cd ~^M^L'
 unset key
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -185,7 +185,7 @@ elapsed () {
 setopt clobber # Allow things like echo 'a' > b.txt if b.txt exists.
 setopt globdots # Tab complete "hidden" files (hate that term)
 
-tabs -4
+tabs -4 # set tabwidth = 4
 
 JAVA_HOME="/usr/lib/jvm/default"
 PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin"
