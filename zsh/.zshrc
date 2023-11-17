@@ -206,17 +206,19 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export PAGER='nvim -R'
 
-alias ll="exa -lhFa --icons --git"
+alias ll="eza -lhFa --icons --git"
 alias cd="cd -P" # I like cd to resolve links
 alias python="python3"
 alias mkdir="mkdir -pv"
-alias tree="exa -ThFa --icons --git -I 'target|node_modules|venv'"
+alias tree="eza -ThFa --icons --git -I 'target|node_modules|venv'"
 alias :q="exit" # I can't help the vi
 alias serve="basic-http-server" # https://github.com/brson/basic-http-server
 
 # Most servers don't have alacritty term info
 # This is less useful since I'm using tmux now
 [[ $TERM = "alacritty" ]] && alias ssh="TERM=xterm-256color ssh"
+
+export FPATH="~/dev/completions/eza/completions/zsh:$FPATH"
 
 # Git Aliases
 alias ga='git add'
