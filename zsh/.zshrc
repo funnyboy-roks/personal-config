@@ -190,6 +190,10 @@ tabs -4
 JAVA_HOME="/usr/lib/jvm/default"
 PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin"
 
+# Start tmux if we're in guake
+# arguably, we could do `-ne 'tmux: server'`, but I think that may be too generic
+[ "$(pstree -sA $$ | awk -F "---" '{ print $2 }')" = 'guake' ] && tmux new
+
 eval $(thefuck --alias)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
