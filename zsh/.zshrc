@@ -121,7 +121,7 @@ fs () {
 # b/c I'm dumb and will forget
 my-ip () {
     printf "Use \`ips\`\n"
-    exit 1
+    return 1
 }
 
 # View information about my IPs
@@ -210,7 +210,7 @@ alias ll="eza -lhFa --icons --git"
 alias cd="cd -P" # I like cd to resolve links
 alias python="python3"
 alias mkdir="mkdir -pv"
-alias tree="eza -ThFa --icons --git -I 'target|node_modules|venv'"
+alias tree="eza -ThFa --icons --git -I 'target|node_modules|venv|.git'"
 alias :q="exit" # I can't help the vi
 alias serve="basic-http-server" # https://github.com/brson/basic-http-server
 
