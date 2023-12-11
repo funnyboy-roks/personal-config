@@ -384,7 +384,7 @@ set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
-au TextYankPost * silent! lua vim.highlight.on_yank() " Highlight yank
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
