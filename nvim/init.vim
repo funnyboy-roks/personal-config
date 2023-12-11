@@ -57,6 +57,7 @@ Plug 'tikhomirov/vim-glsl'
 
 " String coersion
 Plug 'tpope/vim-abolish'
+Plug 'junegunn/vim-easy-align'
 
 " Give me markdown preview (really just for maths)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -490,6 +491,11 @@ nm <silent> <F1> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
     \ . ">"<CR>
 imap <F1> <Esc>
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " =============================================================================
 " # Autocommands
