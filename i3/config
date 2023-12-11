@@ -157,6 +157,7 @@ assign [class="(?i)minecraft"] $ws5
 assign [class="(?i)modrinth-app"] $ws5
 assign [class="(?i)steam"] $ws6
 assign [class="(?i)thunderbird"] $ws8
+for_window [class="(?i)nannou"] floating enable
 
 ## </Window Config>
 
