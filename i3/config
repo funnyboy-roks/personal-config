@@ -124,10 +124,7 @@ bindsym $mod+Ctrl+h focus output left
 bindsym $mod+Ctrl+k focus output up
 bindsym $mod+Ctrl+j focus output down
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit?' -B ' Yes ' 'i3-msg exit' -f 'pango:Anonymous Pro 36'"
 
 # Lock screen
 bindsym $mod+Escape exec ~/.config/i3/lock
