@@ -182,6 +182,19 @@ elapsed () {
     ps -eo pid,cmd,stime,etime | \grep -iE "$1|PID" | \grep -vE '(grep|ps)'
 }
 
+# Swap two files using a random file in /tmp/
+swap () {
+    if [[ $# -ne 2 ]]; then
+        echo "Usage: swap <file1> <file2>" >&2
+        return 1
+    fi
+
+    local tmp_path="/tmp/SWAP_$(cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c15)"
+    mv $1 $tmp_path
+    mv $2 $1
+    mv $tmp_path $2
+}
+
 setopt clobber # Allow things like echo 'a' > b.txt if b.txt exists.
 setopt globdots # Tab complete "hidden" files (hate that term)
 
