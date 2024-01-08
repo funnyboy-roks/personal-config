@@ -58,10 +58,10 @@ source ${ZIM_HOME}/init.zsh
 # zsh-history-substring-search
 zmodload -F zsh/terminfo +p:terminfo
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
-for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('^[[A' '^P' '^k' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' '^j' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('^[[H' '^H') bindkey -s ${key} 'cd ~^M^L'
 unset key
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -121,7 +121,7 @@ fs () {
 # b/c I'm dumb and will forget
 my-ip () {
     printf "Use \`ips\`\n"
-    exit 1
+    return 1
 }
 
 # View information about my IPs
@@ -182,13 +182,30 @@ elapsed () {
     ps -eo pid,cmd,stime,etime | \grep -iE "$1|PID" | \grep -vE '(grep|ps)'
 }
 
+# Swap two files using a random file in /tmp/
+swap () {
+    if [[ $# -ne 2 ]]; then
+        echo "Usage: swap <file1> <file2>" >&2
+        return 1
+    fi
+
+    local tmp_path="/tmp/SWAP_$(cat /dev/urandom | base64 | tr -dc '0-9a-zA-Z' | head -c15)"
+    mv $1 $tmp_path
+    mv $2 $1
+    mv $tmp_path $2
+}
+
 setopt clobber # Allow things like echo 'a' > b.txt if b.txt exists.
 setopt globdots # Tab complete "hidden" files (hate that term)
 
-tabs -4
+tabs -4 # set tabwidth = 4
 
 JAVA_HOME="/usr/lib/jvm/default"
 PATH="$PATH:$HOME/.cargo/bin:$HOME/scripts:$HOME/.local/bin"
+
+# Start tmux if we're in guake
+# arguably, we could do `-ne 'tmux: server'`, but I think that may be too generic
+[ "$(pstree -sA $$ | awk -F "---" '{ print $2 }')" = 'guake' ] && tmux new
 
 eval $(thefuck --alias)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -202,17 +219,19 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export PAGER='nvim -R'
 
-alias ll="exa -lhFa --icons --git"
+alias ll="eza -lhFa --icons --git"
 alias cd="cd -P" # I like cd to resolve links
 alias python="python3"
 alias mkdir="mkdir -pv"
-alias tree="exa -ThFa --icons --git -I 'target|node_modules|venv'"
+alias tree="eza -ThFa --icons --git -I 'target|node_modules|venv|.git'"
 alias :q="exit" # I can't help the vi
 alias serve="basic-http-server" # https://github.com/brson/basic-http-server
 
 # Most servers don't have alacritty term info
 # This is less useful since I'm using tmux now
 [[ $TERM = "alacritty" ]] && alias ssh="TERM=xterm-256color ssh"
+
+export FPATH="~/dev/completions/eza/completions/zsh:$FPATH"
 
 # Git Aliases
 alias ga='git add'

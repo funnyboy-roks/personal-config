@@ -57,6 +57,7 @@ Plug 'tikhomirov/vim-glsl'
 
 " String coersion
 Plug 'tpope/vim-abolish'
+Plug 'junegunn/vim-easy-align'
 
 " Give me markdown preview (really just for maths)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -383,7 +384,7 @@ set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
-au TextYankPost * silent! lua vim.highlight.on_yank() " Highlight yank
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
@@ -441,6 +442,8 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
   \                               'options': '--tiebreak=index'}, <bang>0)
 
+command Paste execute "write !curl -X POST https://api.pastes.dev/post -H 'Content-Type: text/" . &ft . "' --data-binary '@-' | jq -r '\"https://pastes.dev/\" + .key'"
+
 
 " Open new file adjacent to current file
 nnoremap <leader>o :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -490,6 +493,11 @@ nm <silent> <F1> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
     \ . ">"<CR>
 imap <F1> <Esc>
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " =============================================================================
 " # Autocommands
