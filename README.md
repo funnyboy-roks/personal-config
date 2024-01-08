@@ -25,8 +25,8 @@ Most configs can be found in this repo.
 
 [Arch Linux]: https://archlinux.org
 [i3]: https://i3wm.org/
-[lemurs]: https://github.com/polybar/polybar/wiki/
-[polybar]: https://github.com/coastalwhite/lemurs
+[lemurs]: https://github.com/coastalwhite/lemurs
+[polybar]: https://github.com/polybar/polybar/wiki/
 [Firefox Developer Edition]: https://www.mozilla.org/en-US/firefox/developer/
 [ulauncher]: https://github.com/Ulauncher/Ulauncher/
 
