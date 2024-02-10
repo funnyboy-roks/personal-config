@@ -34,11 +34,11 @@ case "$1" in
 esac
 
 min_brightness="$(printf "%.0f" "$(echo "0.10 * $max_brightness" | bc -l)")"
-if ((new_brightness < $min_brightness)); then
+if [[ $new_brightness -lt $min_brightness ]]; then
     new_brightness=$min_brightness
 fi
 
-if ((new_brightness > max_brightness)); then
+if [[ $new_brightness -gt $max_brightness ]]; then
 	new_brightness="$max_brightness"
 fi
 
@@ -47,4 +47,6 @@ new_percent="$(printf "%.0f" "$(echo "$new_brightness * 100 / $max_brightness" |
 echo "$cur_brightness -> $new_brightness / $max_brightness"
 echo "$new_brightness" | tee /sys/class/backlight/intel_backlight/brightness
 
-notify-send "Brightness set to $new_percent%"  -r 1238129239 -u low -t 500
+if [[ $new_brightness -ne $cur_brightness ]]; then
+    notify-send "Brightness " -h "int:value:$new_percent" -h "string:hlcolor:#c3ba63" -r 1238129239 -u low -t 500
+fi
