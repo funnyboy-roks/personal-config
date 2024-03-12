@@ -47,7 +47,8 @@ Plug 'rhysd/vim-clang-format'
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -78,9 +79,11 @@ endif
 set background=dark
 let base16colorspace=256
 let g:base16_shell_path="~/.config/nvim/base16/shell/scripts/"
+let g:pandoc#syntax#conceal#use=0
 colorscheme base16-circus
 syntax on
 hi Normal ctermbg=NONE
+
 
 " Customize the highlight a bit.
 " Make comments more prominent -- they are important.
