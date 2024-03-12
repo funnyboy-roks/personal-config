@@ -440,9 +440,9 @@ cursor:
 #   - (Windows) powershell
 shell:
   program: /usr/bin/zsh
-  args:
-    - -c
-    - 'source ~/.zshrc && /usr/bin/tmux new'
+    # args:
+    #   - -c
+    #   - 'source ~/.zshrc && /usr/bin/tmux new'
 
 # Startup directory
 #
