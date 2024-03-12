@@ -424,7 +424,7 @@ map L $
 noremap <leader>p "+p
 noremap <leader>P "+P
 noremap <leader>y "+y
-noremap <leader>Y :%y+ 
+noremap <leader>Y :%y+<cr>
 
 " <leader>s for Rg search
 noremap <leader>s :Rg
