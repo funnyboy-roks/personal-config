@@ -60,7 +60,6 @@ zmodload -F zsh/terminfo +p:terminfo
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 for key ('^[[A' '^P' '^k' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
 for key ('^[[B' '^N' '^j' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
-for key ('^[[H' '^H') bindkey -s ${key} 'cd ~^M^L'
 unset key
 
 export NVM_DIR="$HOME/.nvm"
@@ -219,11 +218,11 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export PAGER='nvim -R'
 
-alias ll="eza -lhFa --icons --git"
+alias ll="eza -lhaF --icons --git"
 alias cd="cd -P" # I like cd to resolve links
 alias python="python3"
 alias mkdir="mkdir -pv"
-alias tree="eza -ThFa --icons --git -I 'target|node_modules|venv|.git'"
+alias tree="eza -ThaF --icons --git -I 'target|node_modules|venv|.git'"
 alias :q="exit" # I can't help the vi
 alias serve="basic-http-server" # https://github.com/brson/basic-http-server
 
@@ -243,5 +242,6 @@ alias gl='git log'
 alias gp='git pull'
 alias gpsh='git push'
 alias gss='git status -s'
+alias feh='feh -B "#222" --force-aliasing --keep-zoom-vp -z'
 
 eval "$(atuin init zsh --disable-up-arrow)"
