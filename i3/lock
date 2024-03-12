@@ -27,5 +27,3 @@ notify-send 'Time Locked:' "$time_locked" -r 1238129238 -u low
 #pactl set-sink-mute @DEFAULT_SINK@ false # TODO: make this resume the previous state
 
 polychromatic-cli -o brightness -p 100
-
-xinput --list | grep "QDtech" > /dev/null && xinput --map-to-output "QDtech MPI7003" HDMI-A-0
