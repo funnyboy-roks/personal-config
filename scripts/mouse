@@ -13,6 +13,9 @@ elif [ $1 = "on" ]; then
     s="1"
 elif [ $1 = "off" ]; then
     s="0"
+else
+    echo "Unknown arguments: $@" >&2
+    exit 1
 fi
 
 xinput list |
