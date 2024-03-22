@@ -48,7 +48,9 @@ Plug 'rhysd/vim-clang-format'
 Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -79,7 +81,6 @@ endif
 set background=dark
 let base16colorspace=256
 let g:base16_shell_path="~/.config/nvim/base16/shell/scripts/"
-let g:pandoc#syntax#conceal#use=0
 colorscheme base16-circus
 syntax on
 hi Normal ctermbg=NONE
@@ -94,9 +95,6 @@ hi Normal ctermbg=NONE
 " Give typos a better look in alacritty
 hi SpellBad cterm=undercurl ctermbg=none gui=undercurl guisp=LightRed
 hi SpellCap cterm=undercurl ctermbg=none gui=undercurl guisp=LightBlue
-
-" Better md block quotes
-hi! link mkdBlockquote Special
 
 " LSP configuration
 lua << EOF
@@ -308,6 +306,7 @@ set hidden
 set nowrap
 set nojoinspaces
 let g:sneak#s_next = 1
+let g:vim_markdown_math = 1
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
@@ -521,9 +520,11 @@ endif
 " Follow Rust code style rules
 au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
 au Filetype rust set colorcolumn=100
+
 " Disable semantic highlights for rust
 " see: https://vi.stackexchange.com/questions/41932/syntax-highlighting-breaks-with-rust-analyzer/41933#41933
 au Filetype rust source ~/.config/nvim/scripts/rust.lua
+au Filetype markdown source ~/.config/nvim/scripts/md.vim
 
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot
