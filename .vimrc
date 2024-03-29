@@ -116,6 +116,9 @@ nnoremap <leader>, :set invlist<cr>
 " show stats
 nnoremap <leader>q g<c-g>
 
+" I know how to use vim, thanks
+nnoremap <c-c> <nop>
+
 " make it such that copying over ssh is a bit easier by removing line numbers
 " and sign column (for copying in Alacritty)
 " This feels like a bit of a hacky solution.  One could alternatively have the
@@ -129,3 +132,20 @@ nnoremap <leader>q g<c-g>
 nnoremap <leader>Y :set number! \| set relativenumber! \| set signcolumn=no<cr>
 " reset back to "normal" layout
 nnoremap <leader><Esc> :set number \| set relativenumber \| set signcolumn=yes<cr>
+
+command Paste redir @+>|silent execute "write !curl -X POST https://api.pastes.dev/post -H 'Content-Type: text/" . &ft . "' --data-binary '@-' 2> /dev/null | jq -r '\"https://pastes.dev/\" + .key' | xargs"|redir END|let @+ = substitute(@+, '[^0-9a-z:/]', '', 'gi')|echom @+
+
+" Map C-j and C-k to Down and Up for things like the command line
+snoremap <C-j> <Down>
+xnoremap <C-j> <Down>
+cnoremap <C-j> <Down>
+onoremap <C-j> <Down>
+lnoremap <C-j> <Down>
+tnoremap <C-j> <Down>
+
+snoremap <C-k> <Up>
+xnoremap <C-k> <Up>
+cnoremap <C-k> <Up>
+onoremap <C-k> <Up>
+lnoremap <C-k> <Up>
+tnoremap <C-k> <Up>
