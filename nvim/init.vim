@@ -114,6 +114,8 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     }),
     sources = cmp.config.sources({
         -- TODO: currently snippets from lsp end up getting prioritized -- stop that!
@@ -399,22 +401,20 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 " ; as :
 nnoremap ; :
 
-" C-j as Esc
-" C-j is a little awkward unfortunately:
-" https://github.com/neovim/neovim/issues/5916
-nnoremap <C-j> <Esc>
-inoremap <C-j> <Esc>
-vnoremap <C-j> <Esc>
-snoremap <C-j> <Esc>
-xnoremap <C-j> <Esc>
-cnoremap <C-j> <C-c>
-onoremap <C-j> <Esc>
-lnoremap <C-j> <Esc>
-tnoremap <C-j> <Esc>
+" Map C-j and C-k to Down and Up for things like the command line
+snoremap <C-j> <Down>
+xnoremap <C-j> <Down>
+cnoremap <C-j> <Down>
+onoremap <C-j> <Down>
+lnoremap <C-j> <Down>
+tnoremap <C-j> <Down>
 
-" Ctrl+h to stop searching
-vnoremap <C-h> :nohlsearch<cr>
-nnoremap <C-h> :nohlsearch<cr>
+snoremap <C-k> <Up>
+xnoremap <C-k> <Up>
+cnoremap <C-k> <Up>
+onoremap <C-k> <Up>
+lnoremap <C-k> <Up>
+tnoremap <C-k> <Up>
 
 " Jump to start and end of line using the home row keys
 map H ^
