@@ -220,8 +220,10 @@ export PAGER='nvim -R'
 
 alias ll="eza -lhaF --icons --git"
 alias cd="cd -P" # I like cd to resolve links
+alias cp="cp -v" # Give me verbosity
+alias rm="rm -v" # Give me verbosity
+alias mkdir="mkdir -pv" # Create parent folders and give me verbosity
 alias python="python3"
-alias mkdir="mkdir -pv"
 alias tree="eza -ThaF --icons --git -I 'target|node_modules|venv|.git'"
 alias :q="exit" # I can't help the vi
 alias serve="basic-http-server" # https://github.com/brson/basic-http-server
