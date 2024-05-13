@@ -141,6 +141,7 @@ bindsym XF86AudioPlay exec playerctl --player playerctld play-pause
 bindsym XF86AudioPause exec playerctl --player playerctld play-pause
 bindsym XF86AudioNext exec playerctl --player playerctld next
 bindsym XF86AudioPrev exec playerctl --player playerctld previous
+bindsym Ctrl+grave exec tdrop -am alacritty --config-file=/home/funnyboy_roks/.config/alacritty/tdrop.yml
 bindsym $mod+z exec boomer
 
 ## </Keybinds>
@@ -263,7 +264,6 @@ exec_always dunst -conf ~/.config/i3/dunst/dunstrc
 exec_always xmodmap ~/.xmodmap
 
 # Open Apps
-exec guake
 exec discord
 exec autokey-qt
 exec spotify
