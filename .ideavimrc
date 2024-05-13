@@ -5,6 +5,8 @@ source ~/.config/nvim/init.vim " not perfect, but is okay
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 map <leader>a <Action>(ShowIntentionActions)
 map <C-p> <Action>(GotoFile)
+map [d <Action>(GotoPreviousError)
+map ]d <Action>(GotoNextError)
 
 " Find more examples here: https://jb.gg/share-ideavimrc
 
