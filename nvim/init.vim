@@ -57,6 +57,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'GutenYe/json5.vim'
 Plug 'tikhomirov/vim-glsl'
+Plug 'kaarmu/typst.vim'
 
 " String coersion
 Plug 'tpope/vim-abolish'
@@ -205,6 +206,7 @@ lspconfig.tsserver.setup{}
 lspconfig.svelte.setup{}
 lspconfig.cssls.setup{}
 lspconfig.clangd.setup{}
+lspconfig.typst_lsp.setup{}
 
 lspconfig.java_language_server.setup {
     cmd = { '/home/funnyboy_roks/dev/lsp/java-language-server/dist/lang_server_linux.sh' } 
