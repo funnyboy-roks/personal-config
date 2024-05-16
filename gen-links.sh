@@ -35,3 +35,8 @@ mkln "scripts"              "$HOME/scripts"
 # These need sudo to run, but there here for documentation
 mkln "lemurs/config.toml"   "/etc/lemurs/config.toml"
 mkln "lemurs/wms"           "/etc/lemurs/wms"
+
+for path in $(find "~/.mozilla/firefox" -maxdepth 1 -iname '*.dev-edition-default*'); do
+    mkdir "$path/chrome"
+    mkln "firefox/userChrome.css" "$path/chrome/userChrome.css"
+done
