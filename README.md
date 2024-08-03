@@ -1,6 +1,9 @@
 # Personal Config
 
-## NOTE: When cloning, be sure to use `--recurse-submodules`.
+# Cloning
+
+This repo uses some submodules for base16 styles, so be sure to use
+`--recurse-submodules` when cloning.
 
 ## Setup
 
@@ -17,9 +20,10 @@ though I use IntelliJ for Java development, because there's still no
 great way to do that in [Neo]Vi[m] (if you have ideas, please let me
 know!).
 
-I use two terminal emulators; [Alacritty] and [Guake] both running
-[tmux] with [zsh] as my shell using [powerlevel10k]'s version of the
-[pure] prompt
+My terminal emulator of choice is [Alacritty], running [tmux] with [zsh]
+as my shell using [powerlevel10k]'s version of the [pure] prompt.  I
+have an Alacritty window using [tdrop] to make it a quake-style
+terminal.
 
 Most configs can be found in this repo.
 
@@ -33,8 +37,8 @@ Most configs can be found in this repo.
 [NeoVim]: https://neovim.io/
 
 [Alacritty]: https://github.com/alacritty/alacritty
-[Guake]: https://github.com/Guake/guake
 [tmux]: https://github.com/tmux/tmux/
 [zsh]: https://www.zsh.org/
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
 [pure]: https://github.com/romkatv/powerlevel10k#pure-compatibility
+[tdrop]: https://github.com/noctuid/tdrop
