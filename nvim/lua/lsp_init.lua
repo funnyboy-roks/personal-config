@@ -44,7 +44,7 @@ local on_attach = function(client, bufnr)
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
-    local opts = { noremap=true, silent=true }
+    local opts = { noremap = true, silent = true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -85,14 +85,14 @@ lspconfig.rust_analyzer.setup {
             },
             completion = {
                 postfix = {
-                  enable = false,
+                    enable = false,
                 },
             },
         },
     },
     capabilities = capabilities,
 }
-lspconfig.pyright.setup{}
+lspconfig.pyright.setup {}
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -102,27 +102,27 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     }
 )
 
-lspconfig.tsserver.setup{
+lspconfig.tsserver.setup {
     on_attach = on_attach,
 }
-lspconfig.svelte.setup{
+lspconfig.svelte.setup {
     on_attach = on_attach,
 }
-lspconfig.cssls.setup{
+lspconfig.cssls.setup {
     on_attach = on_attach,
 }
-lspconfig.clangd.setup{
+lspconfig.clangd.setup {
     on_attach = on_attach,
 }
-lspconfig.typst_lsp.setup{
+lspconfig.typst_lsp.setup {
     on_attach = on_attach,
 }
 
-lspconfig.lua_ls.setup{
+lspconfig.lua_ls.setup {
     on_attach = on_attach,
     on_init = function(client)
         local path = client.workspace_folders[1].name
-        if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+        if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
             return
         end
 
