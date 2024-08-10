@@ -1,6 +1,6 @@
 local cmp = require 'cmp'
 
-local lspconfig = require 'lspconfig' 
+local lspconfig = require 'lspconfig'
 cmp.setup({
     snippet = {
         -- REQUIRED by nvim-cmp. get rid of it once we can
@@ -62,6 +62,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 
+
     -- Get signatures (and _only_ signatures) when in argument lists.
     require 'lsp_signature'.on_attach({
         doc_lines = 0,
@@ -101,12 +102,47 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     }
 )
 
-lspconfig.tsserver.setup{}
-lspconfig.svelte.setup{}
-lspconfig.cssls.setup{}
--- lspconfig.clangd.setup{}
-lspconfig.typst_lsp.setup{}
+lspconfig.tsserver.setup{
+    on_attach = on_attach,
+}
+lspconfig.svelte.setup{
+    on_attach = on_attach,
+}
+lspconfig.cssls.setup{
+    on_attach = on_attach,
+}
+lspconfig.clangd.setup{
+    on_attach = on_attach,
+}
+lspconfig.typst_lsp.setup{
+    on_attach = on_attach,
+}
+
+lspconfig.lua_ls.setup{
+    on_attach = on_attach,
+    on_init = function(client)
+        local path = client.workspace_folders[1].name
+        if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+            return
+        end
+
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+                version = 'LuaJIT'
+            },
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME
+                }
+            }
+        })
+    end,
+    settings = {
+        Lua = {}
+    }
+}
 
 lspconfig.java_language_server.setup {
-    cmd = { '/home/funnyboy_roks/dev/lsp/java-language-server/dist/lang_server_linux.sh' } 
+    cmd = { '/home/funnyboy_roks/dev/lsp/java-language-server/dist/lang_server_linux.sh' }
 }

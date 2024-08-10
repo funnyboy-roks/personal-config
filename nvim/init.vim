@@ -26,6 +26,8 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'vifm/vifm.vim'
+
 " Semantic language support
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
@@ -156,6 +158,7 @@ let g:latex_fold_sections = []
 
 " Open hotkeys
 map <C-p> :Files<CR>
+" map <C-p> :Vifm<CR>
 nmap <leader>; :Buffers<CR>
 
 " Quick-save
