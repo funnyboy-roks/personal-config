@@ -293,3 +293,4 @@ exec picom
 exec ulauncher --hide-window
 exec flameshot
 exec thunderbird
+exec_always protonvpn-app
