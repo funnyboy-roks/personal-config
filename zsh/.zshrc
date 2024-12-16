@@ -63,8 +63,8 @@ for key ('^[[B' '^N' '^j' ${terminfo[kcud1]}) bindkey ${key} history-substring-s
 unset key
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 # Personal Config
@@ -246,5 +246,6 @@ alias gp='git pull'
 alias gpsh='git push'
 alias gss='git status -s'
 alias feh='feh -B "#222" --force-aliasing --keep-zoom-vp -z'
+alias find='noglob find'
 
 eval "$(atuin init zsh --disable-up-arrow)"
