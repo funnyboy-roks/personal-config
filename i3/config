@@ -50,7 +50,7 @@ bindsym $mod+Shift+l move right
 bindsym $mod+o split h
 
 # Split in _v_ertical orientation
-bindsym $mod+v split v
+# bindsym $mod+v split v
 
 # Toggle fullscreen for the focused container
 bindsym $mod+f fullscreen toggle
@@ -217,6 +217,26 @@ mode "$spotify-mode" {
     bindsym Ctrl+j mode "default"
     bindsym Ctrl+l mode "default"
     bindsym $mod+s mode "default"
+}
+
+set $volume-mode v  [j/k] [m]ute [space]-pause [n]ext [N]-previous
+bindsym $mod+v mode "$volume-mode"
+mode "$volume-mode" {
+    bindsym Shift+k exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
+    bindsym Shift+j exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
+    bindsym k exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym j exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle; mode "default"
+
+    bindsym space exec --no-startup-id playerctl --player playerctld play-pause; mode "default"
+
+    bindsym n       exec playerctl -p spotify next
+    bindsym Shift+n exec playerctl previous
+
+    # Back to default: <Esc>, q, or <M-v>
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+    bindsym $mod+v mode "default"
 }
 
 set $dtime dt d(d.m.y)  D(dd M Y)  t(hh:mm)  T(hh:mm:ss)  f(D+t)  F(f+weekday) R
