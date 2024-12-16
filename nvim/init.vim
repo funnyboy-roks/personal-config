@@ -61,6 +61,7 @@ Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'GutenYe/json5.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'kaarmu/typst.vim'
+Plug 'zah/nim.vim'
 
 " String coersion
 Plug 'tpope/vim-abolish'
@@ -405,6 +406,9 @@ autocmd BufRead *.pacnew set readonly
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
+" Auto format svelte files when saving
+autocmd BufWritePre,FileWritePre *.svelte lua vim.lsp.buf.format();
+
 " Jump to last edit position on opening file
 if has("autocmd")
     " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
@@ -412,13 +416,13 @@ if has("autocmd")
 endif
 
 " Follow Rust code style rules
-au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
 au Filetype rust set colorcolumn=100
 
 " Disable semantic highlights for rust
 " see: https://vi.stackexchange.com/questions/41932/syntax-highlighting-breaks-with-rust-analyzer/41933#41933
 au Filetype rust source ~/.config/nvim/scripts/rust.lua
 au Filetype markdown source ~/.config/nvim/scripts/md.vim
+hi NormalFloat guibg=#161616
 
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot
