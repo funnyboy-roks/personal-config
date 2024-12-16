@@ -18,7 +18,8 @@ lock_command='betterlockscreen -l'
 ~/scripts/log.sh lock
 time_locked=$(/usr/bin/time -f '%E' bash -c "$lock_command &> /dev/null" 2>&1)
 
-xset dpms 0 0 0
+xset -dpms
+xset s off
 dunstctl set-paused false
 
 notify-send 'Time Locked:' "$time_locked" -r 1238129238 -u low

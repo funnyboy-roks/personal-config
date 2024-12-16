@@ -283,6 +283,8 @@ exec_always dunst -conf ~/.config/i3/dunst/dunstrc
 
 exec_always xmodmap ~/.xmodmap
 
+exec xset -dpms
+
 # Open Apps
 exec discord
 exec autokey-qt
