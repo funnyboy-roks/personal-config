@@ -1,4 +1,4 @@
-# Personal Config
+# Configs
 
 # Cloning
 
